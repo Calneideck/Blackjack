@@ -3,70 +3,22 @@ using SwinGameSDK;
 
 namespace Blackjack.src
 {
-	public class GameMain
-	{
-		private static int money = 100;
-		private  const int BET = 10;
-		private bool Win;
+    public class GameMain
+    {
+        public static void Main()
+        {
+            SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
+            SwinGame.ShowSwinGameSplashScreen();
 
+            while (false == SwinGame.WindowCloseRequested())
+            {
+                SwinGame.ProcessEvents();
+                SwinGame.ClearScreen(Color.White);
 
-		public static void LoadResources()
-		{
+                SwinGame.DrawFramerate(0, 0);
 
-		}
-
-		private static void HandleUserInput(Deck mydeck)
-		{
-			//Fetch the next batch of UI interaction
-			SwinGame.ProcessEvents();
-
-			if (SwinGame.KeyTyped (KeyCode.vk_SPACE))
-			{
-				mydeck.Draw ();	
-			}
-
-			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
-			{ 
-				if (money <= 0)
-				{
-					Console.WriteLine("You dont have any money Left");
-				}
-
-				else
-				{
-					money = money - BET;
-				}
-			}
-		}
-
-		private static void DrawGame(Deck mydeck)
-		{
-
-
-			SwinGame.ClearScreen(Color.White);
-			SwinGame.DrawText("Cards Remaining :" + mydeck.CardLeft()  ,Color.Red,0,20);
-			SwinGame.DrawText ("Money Left :" + money, Color.Gold, 600, 20);
-
-
-			SwinGame.DrawFramerate(0, 0);
-			SwinGame.RefreshScreen(60);
-		}
-
-		public static void Main()
-		{
-			Deck test = new Deck ();
-			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
-			LoadResources ();
-
-			while (false == SwinGame.WindowCloseRequested())
-			{
-				HandleUserInput (test);
-				DrawGame (test);
-
-
-
-				SwinGame.RefreshScreen(60);
-			}
-		}
-	}
+                SwinGame.RefreshScreen(60);
+            }
+        }
+    }
 }
