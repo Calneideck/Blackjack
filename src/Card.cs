@@ -22,10 +22,10 @@ namespace Blackjack.src
 
 	public enum Suit
 	{
-		SPADES,
-		HEARTS,
-		CLUBS,
-		DIAMONDS
+		SPADE,
+		HEART,
+		CLUB,
+		DIAMOND
 	}
 	public class Card
 	{

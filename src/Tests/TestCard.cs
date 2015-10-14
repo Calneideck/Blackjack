@@ -8,9 +8,33 @@ namespace Blackjack.src.tests
     class TestCard
     {
         [Test()]
-        public void TestCard1()
+        public void TestDealCard()
         {
-            Assert.IsTrue(true);
+            Deck deck = new Deck();
+            Hand hand = new Hand(0, "Player's Hand");
+            Assert.IsTrue(deck.CardLeft() == 52);
+            deck.Draw();
+            Assert.IsTrue(deck.CardLeft() == 51);
+        }
+
+        [Test()]
+        public void TestHandTotal()
+        {
+            Deck deck = new Deck();
+            Hand hand = new Hand(0, "Player's Hand");
+            Assert.IsTrue(hand.PlayerCards.Count == 0);
+            hand.AddCard(deck.Draw());
+            Assert.IsTrue(hand.PlayerCards.Count == 1);
+        }
+
+        [Test()]
+        public void TestAce()
+        {
+            Deck deck = new Deck();
+            Hand hand = new Hand(0, "Player's Hand");
+            hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
+            Assert.IsTrue(hand.PlayerPoints[0] == 1);
+            Assert.IsTrue(hand.PlayerPoints[1] == 11);
         }
     }
 }
