@@ -28,13 +28,55 @@ namespace Blackjack.src.tests
         }
 
         [Test()]
-        public void TestAce()
+        public void TestCardTotal()
         {
             Deck deck = new Deck();
+            Hand hand = new Hand(0, "Player's Hand");
+            hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
+            hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
+            Assert.IsTrue(hand.PlayerPoints == 17);
+        }
+
+        [Test()]
+        public void TestCardTotalWithHighAce()
+        {
             Hand hand = new Hand();
             hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
-			//Assert.IsTrue(hand.PlayerPoints[0] == 1);
-			//Assert.IsTrue(hand.PlayerPoints[1] == 11);
+            hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
+            Assert.IsTrue(hand.PlayerPoints == 21);
+        }
+
+        [Test()]
+        public void TestCardTotalWithLowAce()
+        {
+            Hand hand = new Hand();
+            hand.AddCard(new Card(Rank.NINE, Suit.SPADE));
+            hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
+            hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
+            Assert.IsTrue(hand.PlayerPoints == 20);
+        }
+
+        [Test()]
+        public void TestDealer15()
+        {
+            Deck deck = new Deck();
+            Dealer dealer = new Dealer();
+            dealer.AddCard(new Card(Rank.KING, Suit.HEART));
+            dealer.AddCard(new Card(Rank.FIVE, Suit.CLUB));
+            dealer.Deal();
+            Assert.IsTrue(dealer.PlayerCards = 3);
+        }
+
+        [Test()]
+        public void TestDealer16()
+        {
+            Deck deck = new Deck();
+            Dealer dealer = new Dealer();
+            dealer.AddCard(new Card(Rank.KING, Suit.HEART));
+            dealer.AddCard(new Card(Rank.SIX, Suit.CLUB));
+            dealer.Deal();
+            Assert.IsTrue(dealer.PlayerCards = 2);
+>>>>>>> 77864034d7b3b5a1d628b2459adb99fe7726190e
         }
     }
 }
