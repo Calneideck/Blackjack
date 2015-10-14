@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace Blackjack.src.Tests
+namespace Blackjack.src.tests
 {
     [TestFixture()]
     class TestCard

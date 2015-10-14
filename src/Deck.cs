@@ -7,6 +7,7 @@ namespace Blackjack.src
 	{
 		private int cardsUsed;
 		List<Card> _cards;
+		Random rnd = new Random();
 
 		public Deck ()
 		{
@@ -16,7 +17,7 @@ namespace Blackjack.src
 			{
 				for (int j = 0; j < 13; j++) //52 times
 				{
-					_cards.Add (new Card (){Suit = (Suit)i,Rank = (Rank)j}); // I'm not sure if this is the correct way of setting Rank and Suit
+					_cards.Add (new Card (){CardSuit = (Suit)i,CardRank = (Rank)j}); // I'm not sure if this is the correct way of setting Rank and Suit
 
 				}
 				cardsUsed = 0;
@@ -26,7 +27,7 @@ namespace Blackjack.src
 
 		public void Shuffle()
 		{
-			Random rnd = new Random();
+
 			// for each card (no need to shuffle last card)
 			for(int i = 0; i < 52 - 1; i++)
 			{
@@ -60,6 +61,20 @@ namespace Blackjack.src
 
 				return result;
 			}
+		}
+
+		public void DealCard(Hand hand)
+		{
+			Card card = _cards[rnd.Next(_cards.Count)];
+			hand.PlayerCards.Add(card);	
+			_cards.Remove(card);
+		}
+
+		public void DealCard(Hand hand, int CardIndex)
+		{
+			Card card = _cards[CardIndex];
+			hand.PlayerCards.Add (card);
+			_cards.Remove (card);
 		}
 	}
 }

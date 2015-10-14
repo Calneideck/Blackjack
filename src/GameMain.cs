@@ -17,6 +17,9 @@ namespace Blackjack.src
 
 		private static void HandleUserInput(Deck mydeck)
 		{
+			Hand Player = new Hand(2, "Player");
+
+
 			//Fetch the next batch of UI interaction
 			SwinGame.ProcessEvents();
 
@@ -24,6 +27,17 @@ namespace Blackjack.src
 			{
 				mydeck.Draw ();	
 			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_h))
+			{
+
+			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_l))
+			{
+
+			}
+				
 
 			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
 			{ 
@@ -39,13 +53,14 @@ namespace Blackjack.src
 			}
 		}
 
-		private static void DrawGame(Deck mydeck)
+		private static void DrawGame(Deck mydeck, Hand hand)
 		{
 
 
 			SwinGame.ClearScreen(Color.White);
 			SwinGame.DrawText("Cards Remaining :" + mydeck.CardLeft()  ,Color.Red,0,20);
 			SwinGame.DrawText ("Money Left :" + money, Color.Gold, 600, 20);
+			SwinGame.DrawText ("Player Points :" + hand.PlayerPoints, Color.Blue, 400, 50);
 
 
 			SwinGame.DrawFramerate(0, 0);
@@ -55,13 +70,14 @@ namespace Blackjack.src
 		public static void Main()
 		{
 			Deck test = new Deck ();
+			Hand hand = new Hand (2, "Player");
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
 			LoadResources ();
 
 			while (false == SwinGame.WindowCloseRequested())
 			{
 				HandleUserInput (test);
-				DrawGame (test);
+				DrawGame (test, hand);
 
 
 
