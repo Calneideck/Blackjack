@@ -55,13 +55,9 @@ namespace Blackjack.src
 
 		private static void DrawGame(Deck mydeck)
 		{
-
-
 			SwinGame.ClearScreen(Color.White);
 			SwinGame.DrawText("Cards Remaining :" + mydeck.CardLeft()  ,Color.Red,0,20);
 			SwinGame.DrawText ("Money Left :" + money, Color.Gold, 600, 20);
-
-
 
 			SwinGame.DrawFramerate(0, 0);
 			SwinGame.RefreshScreen(60);

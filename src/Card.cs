@@ -32,11 +32,6 @@ namespace Blackjack.src
 		public Suit CardSuit;
 		public Rank CardRank;
 
-		public Card()
-		{
-
-		}
-
 		public Card(Rank CardRank, Suit CardSuit)
 		{
 			this.CardRank = CardRank;
@@ -44,40 +39,9 @@ namespace Blackjack.src
 
 		}
 
-		public int HighValue {
-		
-			get {
-				switch (CardRank) {
-				case Rank.JACK:
-				case Rank.QUEEN:
-				case Rank.KING:
-				case Rank.TEN:
-					return 10;
-				case Rank.ACE:
-					return 11;
-				default:
-					return (int)CardRank;
-				}
-			}
-		}
 		 
-
-		public int LowValue {
-
-			get {
-				switch (CardRank) {
-				case Rank.JACK:
-				case Rank.QUEEN:
-				case Rank.KING:
-				case Rank.TEN:
-					return 10;
-				default:
-					return (int)CardRank;
-				}
-			}
-
-		} 
-	}}
+	}
+}
 
 
 

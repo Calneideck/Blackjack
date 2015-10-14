@@ -12,9 +12,9 @@ namespace Blackjack.src.tests
         {
             Deck deck = new Deck();
             Hand hand = new Hand();
-            Assert.IsTrue(deck.CardLeft() == 52);
+			Assert.IsTrue(deck.CardsLeft() == 52);
             deck.Draw();
-            Assert.IsTrue(deck.CardLeft() == 51);
+			Assert.IsTrue(deck.CardsLeft() == 51);
         }
 
         [Test()]
@@ -34,7 +34,7 @@ namespace Blackjack.src.tests
             Hand hand = new Hand(0, "Player's Hand");
             hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
-            Assert.IsTrue(hand.PlayerPoints == 17);
+			Assert.IsTrue(hand.CardTotal == 17);
         }
 
         [Test()]
@@ -43,7 +43,7 @@ namespace Blackjack.src.tests
             Hand hand = new Hand();
             hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
-            Assert.IsTrue(hand.PlayerPoints == 21);
+			Assert.IsTrue(hand.CardTotal == 21);
         }
 
         [Test()]
@@ -53,7 +53,7 @@ namespace Blackjack.src.tests
             hand.AddCard(new Card(Rank.NINE, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
             hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
-            Assert.IsTrue(hand.PlayerPoints == 20);
+			Assert.IsTrue(hand.CardTotal == 20);
         }
 
         [Test()]
@@ -76,7 +76,6 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.SIX, Suit.CLUB));
             dealer.Deal();
             Assert.IsTrue(dealer.PlayerCards = 2);
->>>>>>> 77864034d7b3b5a1d628b2459adb99fe7726190e
         }
     }
 }

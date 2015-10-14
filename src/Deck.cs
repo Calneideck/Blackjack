@@ -41,7 +41,7 @@ namespace Blackjack.src
 			cardsUsed = 0;
 		}
 
-		public int CardLeft()
+		public int CardsLeft()
 		{
 			return 52 - cardsUsed;
 		}
@@ -61,20 +61,6 @@ namespace Blackjack.src
 
 				return result;
 			}
-		}
-
-		public void DealCard(Hand hand)
-		{
-			Card card = _cards[rnd.Next(_cards.Count)];
-			hand.PlayerCards.Add(card);	
-			_cards.Remove(card);
-		}
-
-		public void DealCard(Hand hand, int CardIndex)
-		{
-			Card card = _cards[CardIndex];
-			hand.PlayerCards.Add (card);
-			_cards.Remove (card);
 		}
 	}
 }
