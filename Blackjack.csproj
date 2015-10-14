@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Hand.cs" />
     <Compile Include="src\Tests\TestCard.cs" />
+    <Compile Include="Dealer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\*.dll" />

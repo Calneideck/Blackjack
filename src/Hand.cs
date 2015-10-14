@@ -6,27 +6,15 @@ namespace Blackjack.src
 	public class Hand
 	{
 		public List<Card> PlayerCards = new List<Card>();
-		public string Name;
 
-
-		public int PlayerPoints
+		public Hand ()
 		{
-			get 
-			{
-				int Points = 0;
-				foreach (Card c in PlayerCards)
-				{
-					Points += (int)c.CardRank;
-				}
-				return Points;
-			}
-		}
-
-		public Hand (int HandSize, string Name)
-		{
-			PlayerCards.Capacity = HandSize;
-			this.Name = Name;
 		}
 			
+		public void AddCard (Card card)
+		{
+			PlayerCards.Add (card);
+		}
+
 	}
 }
