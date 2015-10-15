@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Blackjack.src
@@ -25,7 +25,13 @@ namespace Blackjack.src
 		public void AddCard (Card card)
 		{
 			Cards.Add (card);
-		}		
+		}
+
+		public int CardsinHand
+		{
+			get {return  Cards.Count; }
+		}
+			
  	}
  }
  
