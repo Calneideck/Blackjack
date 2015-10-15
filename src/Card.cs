@@ -21,10 +21,10 @@ namespace Blackjack
 
 	public enum Suit
 	{
-		SPADES,
-		HEARTS,
-		CLUBS,
-		DIAMONDS
+		SPADE,
+		HEART,
+		CLUB,
+		DIAMOND
 	}
 	public class Card
 	{
@@ -83,16 +83,16 @@ namespace Blackjack
 
 			switch (_suit) {
 
-			case Suit.SPADES:
+			case Suit.SPADE:
 				result += " of Spades";
 				break;
-			case Suit.HEARTS:
+			case Suit.HEART:
 				result += " of Hearts";
 				break;
-			case Suit.DIAMONDS:
+			case Suit.DIAMOND:
 				result += " of Diamonds";
 				break;
-			case Suit.CLUBS:
+			case Suit.CLUB:
 				result += " of Clubs";
 				break;
 			default:
