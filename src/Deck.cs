@@ -14,15 +14,10 @@ namespace Blackjack.src
 			_cards = new List<Card> ();
 
 			for (int i = 0; i < 4; i++) 
-			{
 				for (int j = 0; j < 13; j++) //52 times
-				{
 					_cards.Add (new Card ((Rank)j, (Suit)i)); // I'm not sure if this is the correct way of setting Rank and Suit
 
-				}
-				cardsUsed = 0;
-			}
-
+            Shuffle();
 		}
 
 		public void Shuffle()
@@ -49,18 +44,11 @@ namespace Blackjack.src
 		public Card Draw()
 		{
 			if (cardsUsed == 52) 
-			{
-				Shuffle ();	
-				return null;
-			}
+				Shuffle ();
 
-			else 
-			{
-				cardsUsed++;
-				Card result = _cards [cardsUsed - 1];
-
-				return result;
-			}
+			cardsUsed++;
+			Card result = _cards [cardsUsed - 1];
+			return result;
 		}
 	}
 }

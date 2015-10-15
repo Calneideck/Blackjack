@@ -33,7 +33,7 @@ namespace Blackjack.src.tests
             Hand hand = new Hand();
             hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
-			Assert.IsTrue(hand.CardTotal == 17);
+            Assert.IsTrue(hand.CardTotal == 17);
         }
 
         [Test()]
@@ -58,7 +58,6 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestDealer15()
         {
-
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
@@ -76,6 +75,72 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.SIX, Suit.CLUB));
 			dealer.Deal(deck);
             Assert.IsTrue(dealer.Cards.Count == 2);
+        }
+
+        [Test()]
+        public void TestWin()
+        {
+            Hand player = new Hand();
+            Dealer dealer = new Dealer();
+            player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.TEN, Suit.SPADE));
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.CLUB));
+            dealer.AddCard(new Card(Rank.NINE, Suit.SPADE));
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.CheckScores();
+
+            Assert.IsTrue(game.State == GameState.PLAYER_WINS);
+        }
+
+        [Test()]
+        public void TestDraw()
+        {
+            Hand player = new Hand();
+            Dealer dealer = new Dealer();
+            player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.TEN, Suit.SPADE));
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.CLUB));
+            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.CheckScores();
+
+            Assert.IsTrue(game.State == GameState.DRAW);
+        }
+
+        [Test()]
+        public void TestLose()
+        {
+            Hand player = new Hand();
+            Dealer dealer = new Dealer();
+            player.AddCard(new Card(Rank.NINE, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.TEN, Suit.SPADE));
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.CLUB));
+            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.CheckScores();
+
+            Assert.IsTrue(game.State == GameState.PLAYER_LOSE);
+        }
+
+        [Test()]
+        public void TestBust()
+        {
+            Hand player = new Hand();
+            Dealer dealer = new Dealer();
+            player.AddCard(new Card(Rank.NINE, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.TEN, Suit.SPADE));
+            player.AddCard(new Card(Rank.FIVE, Suit.SPADE));
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.CheckScores();
+
+            Assert.IsTrue(game.State == GameState.PLAYER_LOSE);
         }
     }
 }

@@ -31,31 +31,32 @@ namespace Blackjack
 		private Suit _suit;
 		private Rank _rank;
 
-		public Card()
-		{
-
-		}
-
 		public Card (Rank r, Suit s)
 		{
-
+            _rank = r;
+            _suit = s;
 		}
-
-
 
 		public Rank Rank
 		{
 			get { return _rank; }
-			set { _rank = value; }
 		}
-
 
 		public Suit Suit
 		{
 			get { return _suit; }
-			set { _suit = value; }
 		}
 			
+
+        public int Value
+        {
+            get
+            {
+                if ((int)_rank > 10)
+                    return 10;
+                return (int)_rank;
+            }
+        }
 
 		public String ConvertToString()
 		{
