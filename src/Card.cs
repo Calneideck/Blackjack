@@ -6,7 +6,7 @@ namespace Blackjack
 	{
 		ACE = 1,
 		TWO,
-		THREE ,
+		THREE,
 		FOUR,
 		FIVE,
 		SIX,
@@ -55,6 +55,7 @@ namespace Blackjack
 			get { return _suit; }
 			set { _suit = value; }
 		}
+			
 
 		public String ConvertToString()
 		{

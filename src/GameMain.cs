@@ -65,6 +65,7 @@ namespace Blackjack.src
 
 		public static void Main()
 		{
+			Dealer dealer = new Dealer ();
 			Deck test = new Deck ();
 			Hand hand = new Hand ();
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
@@ -75,7 +76,13 @@ namespace Blackjack.src
 				HandleUserInput (test);
 				DrawGame (test);
 
+				if (hand.CardTotal >= 22) 
+				{
 
+				} else if (dealer.CardTotal >= 22)
+				{
+
+				}
 
 				SwinGame.RefreshScreen(60);
 			}

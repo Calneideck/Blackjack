@@ -1,22 +1,12 @@
 ﻿using System;
 
-namespace Blackjack.src
+namespace Blackjack
 {
-	public class Dealer : Hand
+	public class Dealer
 	{
 		public Dealer ()
 		{
 		}
-			
-		public void Deal (Deck deck)
-		{
-			while (CardTotal < 16)
-			{
-				AddCard (deck.Draw());
-			}
-		}
-
-
 	}
 }
 
