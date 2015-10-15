@@ -1,17 +1,3 @@
-<<<<<<< HEAD:Dealer.cs
-﻿using System;
-
-namespace Blackjack
-{
-	public class Dealer
-	{
-		public Dealer ()
-		{
-		}
-	}
-}
-
-=======
 ﻿using System;
 
 namespace Blackjack.src
@@ -33,5 +19,3 @@ namespace Blackjack.src
 
 	}
 }
-
->>>>>>> bbaedf1b132de25e15bed4c28f497dd1850cb654:src/Dealer.cs
