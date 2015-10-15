@@ -17,7 +17,7 @@ namespace Blackjack.src
 			{
 				for (int j = 0; j < 13; j++) //52 times
 				{
-					_cards.Add (new Card (){CardSuit = (Suit)i,CardRank = (Rank)j}); // I'm not sure if this is the correct way of setting Rank and Suit
+					_cards.Add (new Card ((Rank)j, (Suit)i)); // I'm not sure if this is the correct way of setting Rank and Suit
 
 				}
 				cardsUsed = 0;
