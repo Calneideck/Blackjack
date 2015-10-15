@@ -22,16 +22,15 @@ namespace Blackjack.src.tests
         {
             Deck deck = new Deck();
             Hand hand = new Hand();
-            Assert.IsTrue(hand.PlayerCards.Count == 0);
+            Assert.IsTrue(hand.Cards.Count == 0);
             hand.AddCard(deck.Draw());
-            Assert.IsTrue(hand.PlayerCards.Count == 1);
+            Assert.IsTrue(hand.Cards.Count == 1);
         }
 
         [Test()]
         public void TestCardTotal()
         {
-            Deck deck = new Deck();
-            Hand hand = new Hand(0, "Player's Hand");
+            Hand hand = new Hand();
             hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
 			Assert.IsTrue(hand.CardTotal == 17);
@@ -64,7 +63,7 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
             dealer.AddCard(new Card(Rank.FIVE, Suit.CLUB));
             dealer.Deal();
-            Assert.IsTrue(dealer.PlayerCards = 3);
+            Assert.IsTrue(dealer.Cards.Count == 3);
         }
 
         [Test()]
@@ -75,7 +74,7 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
             dealer.AddCard(new Card(Rank.SIX, Suit.CLUB));
             dealer.Deal();
-            Assert.IsTrue(dealer.PlayerCards = 2);
+            Assert.IsTrue(dealer.Cards.Count == 2);
         }
     }
 }
