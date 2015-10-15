@@ -1,4 +1,4 @@
-﻿ ﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace Blackjack.src
@@ -16,8 +16,13 @@ namespace Blackjack.src
 				int Total = 0;
 				foreach (Card card in Cards)
 				{
-					Total += (int)card._rank;
+					Total += (int)card.Rank;
 				}
+				foreach (Card card in Cards) //it goes through the loop
+				{
+					if (card.Rank == Rank.ACE && Total <= 10)
+						Total += 10;// loops the card to check if the card values
+				}	
 				return Total;
 			}
 
