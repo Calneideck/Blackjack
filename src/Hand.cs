@@ -1,16 +1,13 @@
-﻿using System;
+﻿ ﻿using System;
 using System.Collections.Generic;
 
 namespace Blackjack.src
 {
-	public class Hand
-	{
+ 	public class Hand
+ 	{
 		public List<Card> Cards = new List<Card>();
 		private int Total;
 
-		public Hand ()
-		{
-		}
 
 		public int CardTotal 
 		{
@@ -19,7 +16,7 @@ namespace Blackjack.src
 				int Total = 0;
 				foreach (Card card in Cards)
 				{
-					Total += (int)card.CardRank;
+					Total += (int)card._rank;
 				}
 				return Total;
 			}
@@ -36,8 +33,11 @@ namespace Blackjack.src
 		{
 			Cards.Add (card);
 		}
-
-
-
-	}
-}
+			
+		public Hand ()
+ 		{
+ 		}
+			
+ 	}
+ }
+ 
