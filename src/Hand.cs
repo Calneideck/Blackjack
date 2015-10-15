@@ -16,7 +16,7 @@ namespace Blackjack.src
 				int Total = 0;
 				foreach (Card card in Cards)
 				{
-					Total += (int)card._rank;
+					Total += (int)card.Rank;
 				}
 				return Total;
 			}

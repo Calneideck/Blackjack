@@ -12,7 +12,7 @@ namespace Blackjack.src
 		{
 			while (CardTotal < 16)
 			{
-				AddCard (deck.);
+				AddCard (deck.Draw());
 			}
 		}
 
