@@ -16,6 +16,13 @@ namespace Blackjack.src
 			}
 		}
 
-
+		public override string FirstTwoCards
+		{
+			get {
+				string result1 = Cards [0].ConvertToString ();
+				string result2 = Cards [1].ConvertToString ();
+				return "Dealer Have have : " + result1 + " & " + result2; 
+			}
+		}
 	}
 }
