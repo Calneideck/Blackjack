@@ -13,27 +13,20 @@ namespace Blackjack.src
 
 		}
 
-		private static void HandleUserInput(Deck mydeck)
+		private static void HandleUserInput(BlackJackGame game)
 		{
-			Hand Player = new Hand();
-
-
 			//Fetch the next batch of UI interaction
 			SwinGame.ProcessEvents();
 
 			if (SwinGame.KeyTyped (KeyCode.vk_SPACE))
 			{
-				mydeck.Draw ();	
-			}
-
-			if (SwinGame.KeyTyped (KeyCode.vk_h))
-			{
-
+				game.Player.AddCard((game.Deck.Draw()));
+				game.Decision = true;
 			}
 
 			if (SwinGame.KeyTyped (KeyCode.vk_s))
 			{
-
+				game.Decision = true;
 			}
 				
 
@@ -51,37 +44,36 @@ namespace Blackjack.src
 			}
 		}
 
-		private static void DrawGame(Deck mydeck)
+		private static void DrawGame(BlackJackGame game)
 		{
-			SwinGame.ClearScreen(Color.White);
-			SwinGame.DrawText("Cards Remaining :" + mydeck.CardsLeft()  ,Color.Red,0,20);
+			game.DrawGame ();
 			SwinGame.DrawText ("Money Left :" + money, Color.Gold, 600, 20);
-
-			SwinGame.DrawFramerate(0, 0);
 			SwinGame.RefreshScreen(60);
+		
+	
+		}
+
+		private static void UpdateGame(BlackJackGame game)
+		{
+			game.UpdateGame ();
 		}
 
 		public static void Main()
 		{
 			Dealer dealer = new Dealer ();
-			Deck test = new Deck ();
-			Hand hand = new Hand ();
+			Deck deck = new Deck ();
+			Hand player = new Hand ();
+			BlackJackGame game = new BlackJackGame (deck, player, dealer);
+			game.DealFirstTwoCards ();
+
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
 			LoadResources ();
 
 			while (false == SwinGame.WindowCloseRequested())
 			{
-				HandleUserInput (test);
-				DrawGame (test);
-
-				if (hand.CardTotal >= 22) 
-				{
-
-				} else if (dealer.CardTotal >= 22)
-				{
-
-				}
-
+				HandleUserInput (game);
+				UpdateGame(game);
+				DrawGame (game);
 				SwinGame.RefreshScreen(60);
 			}
 		}
