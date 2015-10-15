@@ -142,5 +142,21 @@ namespace Blackjack.src.tests
 
             Assert.IsTrue(game.State == GameState.PLAYER_LOSE);
         }
+
+        [Test()]
+        public void Test5Cards21()
+        {
+            Hand player = new Hand();
+            player.AddCard(new Card(Rank.TWO, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.TWO, Suit.SPADE));
+            player.AddCard(new Card(Rank.ACE, Suit.SPADE));
+            player.AddCard(new Card(Rank.FOUR, Suit.SPADE));
+            player.AddCard(new Card(Rank.ACE, Suit.HEART));
+            
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.CheckScores();
+
+            Assert.IsTrue(game.State == GameState.PLAYER_WIN;
+        }
     }
 }
