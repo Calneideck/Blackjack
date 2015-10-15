@@ -6,8 +6,6 @@ namespace Blackjack.src
  	public class Hand
  	{
 		public List<Card> Cards = new List<Card>();
-		private int Total;
-
 
 		public int CardTotal 
 		{
@@ -16,33 +14,18 @@ namespace Blackjack.src
 				int Total = 0;
 				foreach (Card card in Cards)
 				{
-					Total += (int)card.Rank;
+					Total += card.Value;
+                    if (card.Rank == Rank.ACE && Total <= 10)
+                        Total += 10;// loops the card to check if the card values
 				}
-				foreach (Card card in Cards) //it goes through the loop
-				{
-					if (card.Rank == Rank.ACE && Total <= 10)
-						Total += 10;// loops the card to check if the card values
-				}	
 				return Total;
 			}
-
-			set 
-			{ 
-				Total = value;
-			}
-
-
 		}
 
 		public void AddCard (Card card)
 		{
 			Cards.Add (card);
-		}
-			
-		public Hand ()
- 		{
- 		}
-			
+		}		
  	}
  }
  

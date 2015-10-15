@@ -7,8 +7,6 @@ namespace Blackjack.src
 	{
 		private static int money = 100;
 		private  const int BET = 10;
-		private bool Win;
-
 
 		public static void LoadResources()
 		{

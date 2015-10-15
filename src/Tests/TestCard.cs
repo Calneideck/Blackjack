@@ -33,7 +33,7 @@ namespace Blackjack.src.tests
             Hand hand = new Hand();
             hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
-			Assert.IsTrue(hand.CardTotal == 17);
+            Assert.IsTrue(hand.CardTotal == 17);
         }
 
         [Test()]
@@ -58,7 +58,6 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestDealer15()
         {
-
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
@@ -88,7 +87,7 @@ namespace Blackjack.src.tests
 
             dealer.AddCard(new Card(Rank.TEN, Suit.CLUB));
             dealer.AddCard(new Card(Rank.NINE, Suit.SPADE));
-            
+
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
             game.CheckScores();
 
