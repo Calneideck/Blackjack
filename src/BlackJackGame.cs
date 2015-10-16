@@ -40,7 +40,7 @@ namespace Blackjack.src
 					{
 						_gamestate = GameState.WIN;
 					}
-					if (_hand.CardTotal > _dealer.CardTotal) 
+					else if (_hand.CardTotal > _dealer.CardTotal) 
 					{
 						_gamestate = GameState.WIN;
 					}
