@@ -153,7 +153,7 @@ namespace Blackjack.src.tests
         }
 
         [Test()]
-        public void Test5Cards21()
+        public void Test5CardsUnder21Win()
         {
             Hand player = new Hand();
             Deck deck = new Deck();
@@ -163,7 +163,10 @@ namespace Blackjack.src.tests
             player.AddCard(new Card(Rank.ACE, Suit.SPADE));
             player.AddCard(new Card(Rank.FOUR, Suit.SPADE));
             player.AddCard(new Card(Rank.ACE, Suit.HEART));
-            
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+            dealer.AddCard(new Card(Rank.TEN, Suit.SPADE));
+
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 			game.Decision = true;
             game.CheckScores();
