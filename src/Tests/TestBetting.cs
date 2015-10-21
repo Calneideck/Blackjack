@@ -85,6 +85,26 @@ namespace Blackjack.src.Tests
             Assert.IsTrue(game.Money == 110);
         }
 
+        public void TestBetLose()
+        {
+            Hand player = new Hand();
+            Deck deck = new Deck();
+            Dealer dealer = new Dealer();
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+
+            player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.FOUR, Suit.SPADE));
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+            dealer.AddCard(new Card(Rank.EIGHT, Suit.SPADE));
+
+            game.Decision = true;
+            game.CheckScores();
+
+            Assert.IsTrue(game.Money == 90);
+        }
+
         [Test()]
         public void TestWin21()
         {
@@ -99,6 +119,34 @@ namespace Blackjack.src.Tests
             game.CheckScores();
 
             Assert.IsTrue(game.Money == 115);
+        }
+
+        [Test()]
+        public void TestWinDouble()
+        {
+            Hand player = new Hand();
+            Deck deck = new Deck();
+            Dealer dealer = new Dealer();
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+
+            player.AddCard(new Card(Rank.FIVE, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.SIX, Suit.SPADE));
+
+            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+            dealer.AddCard(new Card(Rank.SIX, Suit.SPADE));
+
+            game.Player.DoubleDown();
+            if (player.CardTotal > dealer.CardTotal)
+            {
+                game.CheckScores();
+                Assert.IsTrue(game.Status == GameState.WIN);
+            }
+            else
+            {
+                Assert.Inconclusive();
+            }
+
         }
     }
 }
