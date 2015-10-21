@@ -29,33 +29,36 @@ namespace Blackjack.src
 		{
 			if (_decision)
 			{
-				if (_player.CardTotal > 21) 
+				if (Dealer.CardTotal > 21)
+                {
+                    _gamestate = GameState.WIN;
+                }
+                else if (_player.CardTotal > _dealer.CardTotal)
+				{
+					_gamestate = GameState.WIN;
+				}
+				else if (_player.CardTotal < _dealer.CardTotal)
 				{
 					_gamestate = GameState.LOSE;
-				} 
-				else 
-				{
-					if (_player.CardsinHand == 5)
-					{
-						_gamestate = GameState.WIN;
-					}
-					else if (_player.CardTotal > _dealer.CardTotal) 
-					{
-						_gamestate = GameState.WIN;
-					}
-					else if (_player.CardTotal < _dealer.CardTotal)
-					{
-						_gamestate = GameState.LOSE;
-					}
-					else
-					{
-						_gamestate = GameState.DRAW;
-					}
-
 				}
-
+				else
+				{
+					_gamestate = GameState.DRAW;
+				}
 			}
-
+            else
+            {
+                if (_player.CardTotal > 21) 
+				{
+					_gamestate = GameState.LOSE;
+                    _decision = true;
+				} 
+                else if (_player.CardsinHand == 5)
+				{
+					_gamestate = GameState.WIN;
+                    _decision = true;
+				}
+            }
 		}
 
 		public void DrawGame()
@@ -93,7 +96,6 @@ namespace Blackjack.src
 				{
 				case GameState.LOSE:
 					SwinGame.DrawText ("You Lose", Color.Black, 300, 300);
-					_player.Bet = 10;
 					break;
 
 				case GameState.WIN:
@@ -106,28 +108,20 @@ namespace Blackjack.src
 					break;
 				}
 
-				SwinGame.DrawText (_dealer.FirstTwoCards, Color.Black, 400, 200);
-				SwinGame.DrawText ("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
+				
 			}
+            SwinGame.DrawText(_dealer.FirstTwoCards, Color.Black, 400, 200);
+            SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
 
-
-		}
-
-		public void CheckDecision()
-		{
-			if (_player.CardTotal > 21) 
-			{
-				_decision = true;			
-			} 
 		}
 
 		public void RestartGame()
 		{
-			if (_gamestate == GameState.WIN) {
+			if (_gamestate == GameState.WIN)
+            {
 				_player.Money += (_player.Bet * 2);
 				_player.Bet = 10;
 			}
-
 
 			_decision = false;
 			new BlackJackGame(_deck, _player, _dealer);
@@ -140,16 +134,16 @@ namespace Blackjack.src
 		public void DealFirstTwoCards()
 		{
 			Audio.PlaySoundEffect (GameMain.CardShuffle);
+			// Player gets 2 cards
+            _player.AddCard (_deck.Draw ());
 			_player.AddCard (_deck.Draw ());
-			_player.AddCard (_deck.Draw ());
-			_dealer.AddCard (_deck.Draw ());
+            // Dealer gets 1
 			_dealer.AddCard (_deck.Draw ());
 		}
 
 		public void UpdateGame()
 		{
-			CheckScores ();
-			CheckDecision ();
+            //CheckScores ();
 		}
 
 		public GameState Status

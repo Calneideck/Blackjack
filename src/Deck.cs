@@ -14,7 +14,7 @@ namespace Blackjack.src
 			_cards = new List<Card> ();
 
 			for (int i = 0; i < 4; i++) 
-				for (int j = 0; j < 13; j++) //52 times
+				for (int j = 1; j < 14; j++) //52 times
 					_cards.Add (new Card ((Rank)j, (Suit)i)); 
 
             Shuffle();

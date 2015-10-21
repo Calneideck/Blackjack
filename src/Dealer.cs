@@ -20,8 +20,7 @@ namespace Blackjack.src
 		{
 			get {
 				string result1 = Cards [0].ConvertToString ();
-				string result2 = Cards [1].ConvertToString ();
-				return "Dealer has: " + result1 + " & " + result2; 
+				return "Dealer has: " + result1; 
 			}
 		}
 	}

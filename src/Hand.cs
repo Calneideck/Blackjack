@@ -12,12 +12,15 @@ namespace Blackjack.src
 			get 
 			{
 				int Total = 0;
+                bool ace = false;
 				foreach (Card card in Cards)
 				{
 					Total += card.Value;
-                    if (card.Rank == Rank.ACE && Total <= 10)
-						Total += 10;// loops the card to check if the card values
+                    if (card.Rank == Rank.ACE)
+                        ace = true;
 				}
+                if (Total <= 11 && ace)
+                    Total += 10;
 				return Total;
 			}
 		}

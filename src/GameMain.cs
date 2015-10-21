@@ -43,17 +43,17 @@ namespace Blackjack.src
 			SwinGame.ProcessEvents();
 
 			if (SwinGame.KeyTyped (KeyCode.vk_SPACE ) && !game.Decision)
-			{	Audio.PlaySoundEffect (CardSlide);
+			{	
+                Audio.PlaySoundEffect (CardSlide);
 				game.Player.AddCard((game.Deck.Draw()));
+                game.CheckScores();
 			}
 
 			if (SwinGame.KeyTyped (KeyCode.vk_s))
 			{
-				game.Decision = true;
-			}
-			if (SwinGame.KeyTyped (KeyCode.vk_s))
-			{
-				game.Decision = true;
+                game.Dealer.Deal(game.Deck);
+                game.Decision = true;
+                game.CheckScores();
 			}
 
 			if (SwinGame.KeyTyped (KeyCode.vk_r)) 
@@ -64,7 +64,6 @@ namespace Blackjack.src
 			if (SwinGame.KeyTyped (KeyCode.vk_c))
 			{
 				game.Player.BetDown ();
-
 			}
 
 
@@ -80,7 +79,6 @@ namespace Blackjack.src
 					game.Player.BetUp();
 				}
 			}
-				
 		}
 
 		private static void DrawGame(BlackJackGame game)
@@ -94,19 +92,17 @@ namespace Blackjack.src
 		private static void UpdateGame(BlackJackGame game)
 		{
 			game.UpdateGame ();
-
 		}
 
 		public static void Main()
 		{
-			Dealer dealer = new Dealer ();
-			Deck deck = new Deck ();
-			Player player = new Player ();
-			BlackJackGame game = new BlackJackGame (deck, player, dealer);
-			game.DealFirstTwoCards ();
-
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
-			LoadResources ();
+            LoadResources ();
+            Dealer dealer = new Dealer();
+            Deck deck = new Deck();
+            Player player = new Player();
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+            game.DealFirstTwoCards();
 
 			while (false == SwinGame.WindowCloseRequested())
 			{

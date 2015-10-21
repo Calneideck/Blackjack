@@ -34,7 +34,7 @@ namespace Blackjack.src
 
 		public void BetDown ()
 		{
-			if (_bet >10) 
+			if (_bet > 10) 
 			{
 				_money += 10;
 				_bet -= 10;
