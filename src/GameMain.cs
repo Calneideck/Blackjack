@@ -6,15 +6,12 @@ namespace Blackjack.src
 {
 	public class GameMain
 	{
-		private static int money = 100;
-		private  const int BET = 10;
 		private  static Bitmap BackgroundImage;
 		public static SoundEffect CardShuffle;
 		public static SoundEffect CardSlide;
 
 		private static void LoadImages() // load the images 
 		{
-<<<<<<< HEAD
 			for (int i = 1; i <= 13; i++)
 			{
 				SwinGame.LoadBitmapNamed (i + " of spades", i + "s.png");
@@ -22,12 +19,10 @@ namespace Blackjack.src
 				SwinGame.LoadBitmapNamed (i + " of clubs", i + "c.png");
 				SwinGame.LoadBitmapNamed (i + " of diamonds", i + "d.png");
 			}
-=======
 			//Background
 
 			BackgroundImage = Images.LoadBitmap("Background.jpg");
 
->>>>>>> dd70ffa450d957e6c7e3d2fd1d84ded7d4a2fdf0
 		}
 
 		public static void LoadSoundEffects()// load the sound effects
@@ -42,35 +37,50 @@ namespace Blackjack.src
 			LoadSoundEffects ();
 		}
 
-		private static void HandleUserInput(BlackJackGame game)
+		private static void PlayerleUserInput(BlackJackGame game)
 		{
 			//Fetch the next batch of UI interaction
 			SwinGame.ProcessEvents();
 
-			if (SwinGame.KeyTyped (KeyCode.vk_SPACE))
+			if (SwinGame.KeyTyped (KeyCode.vk_SPACE ) && !game.Decision)
 			{	Audio.PlaySoundEffect (CardSlide);
 				game.Player.AddCard((game.Deck.Draw()));
-				game.Decision = true;
 			}
 
 			if (SwinGame.KeyTyped (KeyCode.vk_s))
 			{
 				game.Decision = true;
 			}
-				
+			if (SwinGame.KeyTyped (KeyCode.vk_s))
+			{
+				game.Decision = true;
+			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_r)) 
+			{
+				game.RestartGame ();
+			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_c))
+			{
+				game.Player.BetDown ();
+
+			}
+
 
 			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
 			{ 
-				if (money <= 0)
+				if (game.Player.Money <= 0)
 				{
 					Console.WriteLine("You dont have any money Left");
 				}
 
 				else
 				{
-					money = money - BET;
+					game.Player.BetUp();
 				}
 			}
+				
 		}
 
 		private static void DrawGame(BlackJackGame game)
@@ -78,7 +88,6 @@ namespace Blackjack.src
             Graphics.ClearScreen();
             Images.DrawBitmap (BackgroundImage, 0, 0); 
 			game.DrawGame ();
-			SwinGame.DrawText ("Money Left: " + money, Color.Gold, 600, 20);
 			SwinGame.RefreshScreen(60);
 		}
 
@@ -92,7 +101,7 @@ namespace Blackjack.src
 		{
 			Dealer dealer = new Dealer ();
 			Deck deck = new Deck ();
-			Hand player = new Hand ();
+			Player player = new Player ();
 			BlackJackGame game = new BlackJackGame (deck, player, dealer);
 			game.DealFirstTwoCards ();
 
@@ -101,7 +110,7 @@ namespace Blackjack.src
 
 			while (false == SwinGame.WindowCloseRequested())
 			{
-				HandleUserInput (game);
+				PlayerleUserInput (game);
 				UpdateGame(game);
 				DrawGame (game);
 				SwinGame.RefreshScreen(60);
