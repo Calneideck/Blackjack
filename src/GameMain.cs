@@ -9,7 +9,7 @@ namespace Blackjack.src
 		private static int money = 100;
 		private  const int BET = 10;
 		private  static Bitmap BackgroundImage;
-		private static SoundEffect Sounds; 
+		public static SoundEffect Sounds; 
 
 		private static void LoadImages() // load the images 
 		{
@@ -73,6 +73,7 @@ namespace Blackjack.src
 		private static void UpdateGame(BlackJackGame game)
 		{
 			game.UpdateGame ();
+
 		}
 
 		public static void Main()
