@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Blackjack.src
 {
- 	public class Hand
+	public class Hand
  	{
 		public List<Card> Cards = new List<Card>();
 
@@ -37,7 +37,7 @@ namespace Blackjack.src
 			get
 			{	string result1 = Cards [0].ConvertToString ();
 				string result2 = Cards [1].ConvertToString ();
-				return "You have : " + result1 + " & " + result2; 
+				return "You have: " + result1 + " & " + result2; 
 			}
 		}
 			
