@@ -15,7 +15,7 @@ namespace Blackjack.src
 		{
 			//Background
 
-			BackgroundImage = Images.LoadBitmap("background.jpg");
+			BackgroundImage = Images.LoadBitmap("Background.jpg");
 
 		}
 
@@ -62,8 +62,9 @@ namespace Blackjack.src
 		}
 
 		private static void DrawGame(BlackJackGame game)
-		{	
-			Images.DrawBitmap (BackgroundImage, 0, 0); 
+		{
+            Graphics.ClearScreen();
+            Images.DrawBitmap (BackgroundImage, 0, 0); 
 			game.DrawGame ();
 			SwinGame.DrawText ("Money Left: " + money, Color.Gold, 600, 20);
 			SwinGame.RefreshScreen(60);
