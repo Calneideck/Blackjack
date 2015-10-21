@@ -61,9 +61,9 @@ namespace Blackjack.src
 		public void DrawGame()
 		{
 			SwinGame.ClearScreen(Color.White);
-			SwinGame.DrawText("Cards Remaining :" + _deck.CardsLeft()  ,Color.Red,0,20);
+			SwinGame.DrawText("Cards Remaining: " + _deck.CardsLeft()  ,Color.Red,0,20);
 			SwinGame.DrawText (_hand.FirstTwoCards, Color.Black, 400, 500);
-			SwinGame.DrawText ("Total : " + _hand.CardTotal, Color.Black, 400, 550);
+			SwinGame.DrawText ("Total: " + _hand.CardTotal, Color.Black, 400, 550);
 
 			if (Player.CardsinHand > 2) 
 			{
@@ -86,7 +86,7 @@ namespace Blackjack.src
 				}
 
 				SwinGame.DrawText (_dealer.FirstTwoCards, Color.Black, 400, 200);
-				SwinGame.DrawText ("Total : " + _dealer.CardTotal, Color.Black, 400, 250);
+				SwinGame.DrawText ("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
 			}
 
 		

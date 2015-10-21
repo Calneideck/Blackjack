@@ -8,7 +8,7 @@ namespace Blackjack.src
 		private static int money = 100;
 		private  const int BET = 10;
 
-		public static void LoadResources()
+		public static void LoadResources() // Cards
 		{
 
 		}
@@ -47,10 +47,8 @@ namespace Blackjack.src
 		private static void DrawGame(BlackJackGame game)
 		{
 			game.DrawGame ();
-			SwinGame.DrawText ("Money Left :" + money, Color.Gold, 600, 20);
+			SwinGame.DrawText ("Money Left: " + money, Color.Gold, 600, 20);
 			SwinGame.RefreshScreen(60);
-		
-	
 		}
 
 		private static void UpdateGame(BlackJackGame game)
