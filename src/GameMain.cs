@@ -9,7 +9,8 @@ namespace Blackjack.src
 		private static int money = 100;
 		private  const int BET = 10;
 		private  static Bitmap BackgroundImage;
-		public static SoundEffect Sounds; 
+		public static SoundEffect CardShuffle;
+		public static SoundEffect CardSlide;
 
 		private static void LoadImages() // load the images 
 		{
@@ -21,7 +22,8 @@ namespace Blackjack.src
 
 		public static void LoadSoundEffects()// load the sound effects
 		{
-			Sounds = Audio.LoadSoundEffect ("cardShuffle.ogg");
+			CardShuffle = Audio.LoadSoundEffect ("cardShuffle.ogg");
+			CardSlide = Audio.LoadSoundEffect("cardSlide8.ogg");
 		}	
 
 		public static void LoadResources() // Cards
@@ -36,7 +38,7 @@ namespace Blackjack.src
 			SwinGame.ProcessEvents();
 
 			if (SwinGame.KeyTyped (KeyCode.vk_SPACE))
-			{
+			{	Audio.PlaySoundEffect (CardSlide);
 				game.Player.AddCard((game.Deck.Draw()));
 				game.Decision = true;
 			}

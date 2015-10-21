@@ -93,7 +93,7 @@ namespace Blackjack.src
 
 		public void DealFirstTwoCards()
 		{	
-			Audio.PlaySoundEffect (GameMain.Sounds);
+			Audio.PlaySoundEffect (GameMain.CardShuffle);
 			_hand.AddCard (_deck.Draw ());
 			_hand.AddCard (_deck.Draw ());
 			_dealer.AddCard (_deck.Draw ());
