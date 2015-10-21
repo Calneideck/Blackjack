@@ -5,3 +5,4 @@ tmp
 out.log
 .DS_Store
 *.suo
+.userprefs
