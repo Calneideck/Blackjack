@@ -9,6 +9,7 @@ namespace Blackjack.src
 		private static int money = 100;
 		private  const int BET = 10;
 		private  static Bitmap BackgroundImage;
+		private static SoundEffect Sounds; 
 
 		private static void LoadImages() // load the images 
 		{
@@ -18,9 +19,15 @@ namespace Blackjack.src
 
 		}
 
+		public static void LoadSoundEffects()// load the sound effects
+		{
+			Sounds = Audio.LoadSoundEffect ("cardShuffle.ogg");
+		}	
+
 		public static void LoadResources() // Cards
 		{
-
+			LoadImages ();
+			LoadSoundEffects ();
 		}
 
 		private static void HandleUserInput(BlackJackGame game)
@@ -74,7 +81,7 @@ namespace Blackjack.src
 			Hand player = new Hand ();
 			BlackJackGame game = new BlackJackGame (deck, player, dealer);
 			game.DealFirstTwoCards ();
-			LoadImages ();
+
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
 			LoadResources ();
 
