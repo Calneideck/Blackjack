@@ -22,6 +22,11 @@ namespace Blackjack.src
 			}
 		}
 
+		public void ClearHands()
+		{
+			Cards.Clear ();
+		}
+
 		public void AddCard (Card card)
 		{
 			Cards.Add (card);
