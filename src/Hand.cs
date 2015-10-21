@@ -37,6 +37,7 @@ namespace Blackjack.src
 			get
 			{	string result1 = Cards [0].ConvertToString ();
 				string result2 = Cards [1].ConvertToString ();
+
 				return "You have: " + result1 + " & " + result2; 
 			}
 		}

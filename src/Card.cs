@@ -106,7 +106,7 @@ namespace Blackjack
 			return result;
 		}
 
-		public Bitmap assignimg()
+		public Bitmap CardImage()
 		{
 			Bitmap result;
 			for (int i = 1; i <= 13; i++)
