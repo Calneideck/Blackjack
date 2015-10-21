@@ -1,12 +1,22 @@
 using System;
 using SwinGameSDK;
 
+
 namespace Blackjack.src
 {
 	public class GameMain
 	{
 		private static int money = 100;
 		private  const int BET = 10;
+		private  static Bitmap BackgroundImage;
+
+		private static void LoadImages() // load the images 
+		{
+			//Background
+
+			BackgroundImage = Images.LoadBitmap("background.jpg");
+
+		}
 
 		public static void LoadResources() // Cards
 		{
@@ -45,7 +55,8 @@ namespace Blackjack.src
 		}
 
 		private static void DrawGame(BlackJackGame game)
-		{
+		{	
+			Images.DrawBitmap (BackgroundImage, 0, 0); 
 			game.DrawGame ();
 			SwinGame.DrawText ("Money Left: " + money, Color.Gold, 600, 20);
 			SwinGame.RefreshScreen(60);
@@ -63,7 +74,7 @@ namespace Blackjack.src
 			Hand player = new Hand ();
 			BlackJackGame game = new BlackJackGame (deck, player, dealer);
 			game.DealFirstTwoCards ();
-
+			LoadImages ();
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
 			LoadResources ();
 
