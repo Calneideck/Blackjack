@@ -11,17 +11,17 @@ namespace Blackjack.src.tests
         public void TestDealCard()
         {
             Deck deck = new Deck();
-            Hand hand = new Hand();
+            Player hand = new Player();
 			Assert.IsTrue(deck.CardsLeft() == 52);
             deck.Draw();
 			Assert.IsTrue(deck.CardsLeft() == 51);
         }
 
         [Test()]
-        public void TestHandTotal()
+        public void TestPlayerTotal()
         {
             Deck deck = new Deck();
-            Hand hand = new Hand();
+            Player hand = new Player();
             Assert.IsTrue(hand.Cards.Count == 0);
             hand.AddCard(deck.Draw());
             Assert.IsTrue(hand.Cards.Count == 1);
@@ -30,7 +30,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestCardTotal()
         {
-            Hand hand = new Hand();
+            Player hand = new Player();
             hand.AddCard(new Card(Rank.SEVEN, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
             Assert.IsTrue(hand.CardTotal == 17);
@@ -39,7 +39,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestCardTotalWithHighAce()
         {
-            Hand hand = new Hand();
+            Player hand = new Player();
             hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
 			Assert.IsTrue(hand.CardTotal == 21);
@@ -48,7 +48,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestCardTotalWithLowAce()
         {
-            Hand hand = new Hand();
+            Player hand = new Player();
             hand.AddCard(new Card(Rank.NINE, Suit.SPADE));
             hand.AddCard(new Card(Rank.JACK, Suit.SPADE));
             hand.AddCard(new Card(Rank.ACE, Suit.SPADE));
@@ -80,7 +80,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestWin()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Dealer dealer = new Dealer();
             Deck deck = new Deck();
             player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
@@ -100,7 +100,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestDraw()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Dealer dealer = new Dealer();
             Deck deck = new Deck();
             player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
@@ -119,7 +119,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestLose()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Dealer dealer = new Dealer();
             Deck deck = new Deck();
             player.AddCard(new Card(Rank.NINE, Suit.DIAMOND));
@@ -138,7 +138,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void TestBust()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Dealer dealer = new Dealer();
             Deck deck = new Deck();
             player.AddCard(new Card(Rank.NINE, Suit.DIAMOND));
@@ -155,7 +155,7 @@ namespace Blackjack.src.tests
         [Test()]
         public void Test5CardsUnder21Win()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
             player.AddCard(new Card(Rank.TWO, Suit.DIAMOND));
