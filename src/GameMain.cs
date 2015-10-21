@@ -10,7 +10,13 @@ namespace Blackjack.src
 
 		public static void LoadResources() // Cards
 		{
-
+			for (int i = 1; i <= 13; i++)
+			{
+				SwinGame.LoadBitmapNamed (i + " of spades", i + "s.png");
+				SwinGame.LoadBitmapNamed (i + " of hearts", i + "h.png");
+				SwinGame.LoadBitmapNamed (i + " of clubs", i + "c.png");
+				SwinGame.LoadBitmapNamed (i + " of diamonds", i + "d.png");
+			}
 		}
 
 		private static void HandleUserInput(BlackJackGame game)

@@ -16,7 +16,7 @@ namespace Blackjack.src
 				{
 					Total += card.Value;
                     if (card.Rank == Rank.ACE && Total <= 10)
-                        Total += 10;// loops the card to check if the card values
+						Total += 10;// loops the card to check if the card values
 				}
 				return Total;
 			}
@@ -31,7 +31,7 @@ namespace Blackjack.src
 		{
 			get {return  Cards.Count; }
 		}
-
+			
 		public virtual string FirstTwoCards
 		{
 			get

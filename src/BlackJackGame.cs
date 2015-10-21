@@ -65,31 +65,32 @@ namespace Blackjack.src
 			SwinGame.DrawText (_hand.FirstTwoCards, Color.Black, 400, 500);
 			SwinGame.DrawText ("Total: " + _hand.CardTotal, Color.Black, 400, 550);
 
-			if (Player.CardsinHand > 2) 
-			{
+			if (Player.CardsinHand > 2) {
 				string result;
-				result = Player.Cards [2].ConvertToString();
+				result = Player.Cards [2].ConvertToString ();
 				SwinGame.DrawText ("Your Third Card is: " + result, Color.Black, 400, 525);
-			}
-
-			if (_decision)
-			{	switch (_gamestate) 
-				{
-				case GameState.LOSE: SwinGame.DrawText ("You Lose", Color.Black, 300, 300);
-					break;
-				case GameState.WIN: SwinGame.DrawText ("You Win", Color.Black, 300, 300);
-					break;
-				case GameState.DRAW: SwinGame.DrawText ("Match Draw", Color.Black, 300, 300);
-					break;
-				default: 
-					break;
 				}
 
-				SwinGame.DrawText (_dealer.FirstTwoCards, Color.Black, 400, 200);
-				SwinGame.DrawText ("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
-			}
+				if (_decision) {
+					switch (_gamestate) {
+					case GameState.LOSE:
+						SwinGame.DrawText ("You Lose", Color.Black, 300, 300);
+						break;
+					case GameState.WIN:
+						SwinGame.DrawText ("You Win", Color.Black, 300, 300);
+						break;
+					case GameState.DRAW:
+						SwinGame.DrawText ("Match Draw", Color.Black, 300, 300);
+						break;
+					default: 
+						break;
+					}
 
-		
+					SwinGame.DrawText (_dealer.FirstTwoCards, Color.Black, 400, 200);
+					SwinGame.DrawText ("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
+				}
+
+			}
 		}
 
 		public void DealFirstTwoCards()

@@ -1,18 +1,19 @@
 ﻿using System;
+using SwinGameSDK;
 
 namespace Blackjack
 {
 	public enum Rank
 	{
 		ACE = 1,
-		TWO, 
-		THREE,
-		FOUR,
-		FIVE,
-		SIX,
-		SEVEN,
-		EIGHT,
-		NINE,
+		TWO = 2, 
+		THREE = 3,
+		FOUR = 4,
+		FIVE = 5,
+		SIX = 6,
+		SEVEN = 7,
+		EIGHT = 8,
+		NINE = 9,
 		TEN,
 		JACK,
 		QUEEN,
@@ -103,6 +104,37 @@ namespace Blackjack
 			}
 
 			return result;
+		}
+
+		public Bitmap assignimg()
+		{
+			Bitmap result;
+			for (int i = 1; i <= 13; i++)
+			{
+				switch (_suit) 
+				{
+				case i + Suit.SPADE: 
+					result += SwinGame.BitmapName (i + " of spades");
+					break;
+				case i + Suit.HEART: 
+					result += SwinGame.BitmapName (i + " of hearts");
+					break;
+				case i + Suit.SPADE: 
+					result += SwinGame.BitmapName (i + " of diamonds");
+					break;
+				case i + Suit.SPADE: 
+					result += SwinGame.BitmapName (i + " of clubs");
+					break;
+				default:
+					result += "TBD";
+					break;
+				
+				}
+
+				return result; 
+
+			}
+
 		}
 
 	}
