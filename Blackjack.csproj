@@ -75,6 +75,7 @@
     <Compile Include="src\Tests\TestCard.cs" />
     <Compile Include="src\Dealer.cs" />
     <Compile Include="src\BlackJackGame.cs" />
+    <Compile Include="src\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\*.dll" />
