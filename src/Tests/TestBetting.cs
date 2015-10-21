@@ -12,62 +12,85 @@ namespace Blackjack.src.Tests
         [Test()]
         public void TestStartingMoneyAndInitialBet()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
-            Assert.IsTrue(game.Money == 100);
-            Assert.IsTrue(game.Bet == 10);
+            Assert.IsTrue(game.Player.Money == 100);
+            Assert.IsTrue(game.Player.Bet == 10);
         }
+
+		[Test()]
+		public void TestBetLose()
+		{
+			Player player = new Player();
+			Deck deck = new Deck();
+			Dealer dealer = new Dealer();
+
+			BlackJackGame game = new BlackJackGame(deck, player, dealer);
+
+			player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
+			player.AddCard(new Card(Rank.FOUR, Suit.SPADE));
+
+			dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+			dealer.AddCard(new Card(Rank.EIGHT, Suit.SPADE));
+
+			game.Decision = true;
+			game.CheckScores();
+
+			Assert.IsTrue(game.Player.Money == 90);
+		}
+
+
 
         [Test()]
         public void BetUp()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
-            game.BetUp();
-            Assert.IsTrue(game.Bet == 20);
+            game.Player.BetUp();
+            Assert.IsTrue(game.Player.Bet == 20);
         }
 
         [Test()]
         public void BetDown()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
-            game.BetUp();
-            game.BetUp();
-            game.BetUp();
-            game.BetDown();
-            Assert.IsTrue(game.Bet == 30);
+            game.Player.BetUp();
+            game.Player.BetUp();
+            game.Player.BetUp();
+            game.Player.BetDown();
+            Assert.IsTrue(game.Player.Bet == 30);
         }
 
         [Test()]
         public void BetDownLowerLimit()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
-            game.BetDown();
-            Assert.IsTrue(game.Bet == 10);
+            game.Player.BetDown();
+            Assert.IsTrue(game.Player.Bet == 10);
         }
 
         [Test()]
         public void TestBetWin()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
@@ -82,33 +105,13 @@ namespace Blackjack.src.Tests
             game.Decision = true;
             game.CheckScores();
 
-            Assert.IsTrue(game.Money == 110);
-        }
-
-        public void TestBetLose()
-        {
-            Hand player = new Hand();
-            Deck deck = new Deck();
-            Dealer dealer = new Dealer();
-
-            BlackJackGame game = new BlackJackGame(deck, player, dealer);
-
-            player.AddCard(new Card(Rank.TEN, Suit.DIAMOND));
-            player.AddCard(new Card(Rank.FOUR, Suit.SPADE));
-
-            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
-            dealer.AddCard(new Card(Rank.EIGHT, Suit.SPADE));
-
-            game.Decision = true;
-            game.CheckScores();
-
-            Assert.IsTrue(game.Money == 90);
+            Assert.IsTrue(game.Player.Money == 110);
         }
 
         [Test()]
         public void TestWin21()
         {
-            Hand player = new Hand();
+            Player player = new Player();
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
 
@@ -118,35 +121,7 @@ namespace Blackjack.src.Tests
             player.AddCard(new Card(Rank.JACK, Suit.SPADE));
             game.CheckScores();
 
-            Assert.IsTrue(game.Money == 115);
-        }
-
-        [Test()]
-        public void TestWinDouble()
-        {
-            Hand player = new Hand();
-            Deck deck = new Deck();
-            Dealer dealer = new Dealer();
-
-            BlackJackGame game = new BlackJackGame(deck, player, dealer);
-
-            player.AddCard(new Card(Rank.FIVE, Suit.DIAMOND));
-            player.AddCard(new Card(Rank.SIX, Suit.SPADE));
-
-            dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
-            dealer.AddCard(new Card(Rank.SIX, Suit.SPADE));
-
-            game.Player.DoubleDown();
-            if (player.CardTotal > dealer.CardTotal)
-            {
-                game.CheckScores();
-                Assert.IsTrue(game.Status == GameState.WIN);
-            }
-            else
-            {
-                Assert.Inconclusive();
-            }
-
+            Assert.IsTrue(game.Player.Money == 115);
         }
     }
 }
