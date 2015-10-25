@@ -53,7 +53,6 @@ namespace Blackjack.src.Tests
             Dealer dealer = new Dealer();
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
-
             game.Player.BetUp();
             Assert.IsTrue(game.Player.Bet == 20);
         }

@@ -124,10 +124,9 @@ namespace Blackjack.src
 			}
 
 			_decision = false;
-			new BlackJackGame(_deck, _player, _dealer);
 			_player.ClearHands ();
 			_dealer.ClearHands ();
-			_deck.Shuffle ();
+            //_deck.Shuffle ();
 			DealFirstTwoCards ();
 		}
 

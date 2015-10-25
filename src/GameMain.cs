@@ -42,19 +42,21 @@ namespace Blackjack.src
 			//Fetch the next batch of UI interaction
 			SwinGame.ProcessEvents();
 
-			if (SwinGame.KeyTyped (KeyCode.vk_SPACE ) && !game.Decision)
-			{	
-                Audio.PlaySoundEffect (CardSlide);
-				game.Player.AddCard((game.Deck.Draw()));
-                game.CheckScores();
-			}
-
-			if (SwinGame.KeyTyped (KeyCode.vk_s))
-			{
-                game.Dealer.Deal(game.Deck);
-                game.Decision = true;
-                game.CheckScores();
-			}
+			if (!game.Decision)
+            {
+                if (SwinGame.KeyTyped(KeyCode.vk_SPACE))
+                {
+                    Audio.PlaySoundEffect(CardSlide);
+                    game.Player.AddCard((game.Deck.Draw()));
+                    game.CheckScores();
+                }
+                if (SwinGame.KeyTyped(KeyCode.vk_s))
+                {
+                    game.Dealer.Deal(game.Deck);
+                    game.Decision = true;
+                    game.CheckScores();
+                }
+            }
 
 			if (SwinGame.KeyTyped (KeyCode.vk_r)) 
 			{

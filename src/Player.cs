@@ -10,7 +10,6 @@ namespace Blackjack.src
 		public Player ()
 		{
 			_money = 100;
-			BetUp ();
 		}
 
 		public void BetUp ()
