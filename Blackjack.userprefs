@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="src\GameMain.cs">
     <Files>
-      <File FileName="src\GameMain.cs" Line="56" Column="46" />
+      <File FileName="src\GameMain.cs" Line="16" Column="5" />
       <File FileName="src\Card.cs" Line="1" Column="1" />
       <File FileName="src\Deck.cs" Line="1" Column="1" />
-      <File FileName="src\Dealer.cs" Line="1" Column="1" />
-      <File FileName="src\BlackJackGame.cs" Line="103" Column="99" />
-      <File FileName="src\Hand.cs" Line="18" Column="6" />
+      <File FileName="src\Dealer.cs" Line="17" Column="5" />
+      <File FileName="src\BlackJackGame.cs" Line="119" Column="57" />
+      <File FileName="src\Hand.cs" Line="41" Column="31" />
       <File FileName="src\Tests\TestCard.cs" Line="1" Column="1" />
       <File FileName="src\Player.cs" Line="1" Column="1" />
     </Files>

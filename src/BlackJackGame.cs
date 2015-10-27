@@ -8,6 +8,7 @@ namespace Blackjack.src
 		WIN,
 		LOSE,
 		DRAW
+
 	}
 	public class BlackJackGame
 	{
@@ -144,17 +145,24 @@ namespace Blackjack.src
 
 		public void RestartGame()
 		{
-			if (_gamestate == GameState.WIN)
-            {
-				_player.Money += (_player.Bet * 2);
+			if (_decision == true)
+			{
+				if (_gamestate == GameState.WIN) 
+				{
+					Player.Money = Player.Money + Player.Bet * 2;
+				} else
+				{
+					Player.Money = Player.Money - Player.Bet;
+				}
+					
 				_player.Bet = 10;
-			}
 
-			_decision = false;
-			_player.ClearHands ();
-			_dealer.ClearHands ();
-            //_deck.Shuffle ();
-			DealFirstTwoCards ();
+				_decision = false;
+				_player.ClearHands ();
+				_dealer.ClearHands ();
+	            //_deck.Shuffle ();
+				DealFirstTwoCards ();
+			}
 		}
 
 		public void DealFirstTwoCards()

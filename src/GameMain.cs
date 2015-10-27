@@ -6,7 +6,7 @@ namespace Blackjack.src
 {
 	public class GameMain
 	{
-		private  static Bitmap BackgroundImage;
+		private static Bitmap BackgroundImage;
 		public static SoundEffect CardShuffle;
 		public static SoundEffect CardSlide;
 
