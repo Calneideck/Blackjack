@@ -18,7 +18,7 @@ namespace Blackjack.src.Tests
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
-            Assert.IsTrue(game.Player.Money == 100);
+            Assert.IsTrue(game.Player.Money == 90);
             Assert.IsTrue(game.Player.Bet == 10);
         }
 
@@ -41,7 +41,7 @@ namespace Blackjack.src.Tests
 			game.CheckScores();
 			game.RestartGame ();
 
-			Assert.IsTrue(game.Player.Money == 90);
+			Assert.IsTrue(game.Player.Money == 80);
 		}
 
 
@@ -105,7 +105,7 @@ namespace Blackjack.src.Tests
             game.Decision = true;
             game.CheckScores();
 			game.RestartGame ();
-            Assert.IsTrue(game.Player.Money == 120);
+            Assert.IsTrue(game.Player.Money == 100);
 
         }
 
