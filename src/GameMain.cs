@@ -6,9 +6,11 @@ namespace Blackjack.src
 	public class GameMain
 	{
 		private static Bitmap BackgroundImage;
+		private static Bitmap Simpleguide;
 		public static SoundEffect CardShuffle;
 		public static SoundEffect CardSlide;
 		public static  Music music;
+		private static bool _showhelp = false;
 		private static bool _playing = false;
 		private static bool _doubledowned = false;
 
@@ -100,12 +102,20 @@ namespace Blackjack.src
 					}
 				}
 			}
+			if (SwinGame.KeyTyped (KeyCode.vk_h)) 
+			{
+				_showhelp = !_showhelp;
+
+
+			}
+
 		}
 
 		private static void DrawGame(BlackJackGame game)
 		{
             Graphics.ClearScreen();
-            Images.DrawBitmap (BackgroundImage, 0, 0); 
+            Images.DrawBitmap (BackgroundImage, 0, 0);
+			if (_showhelp) Images.DrawBitmap (Simpleguide, 0, 0);
 			game.DrawGame ();
 			SwinGame.RefreshScreen(60);
 		}
@@ -120,6 +130,7 @@ namespace Blackjack.src
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
             LoadResources ();
 			Audio.PlayMusic (music);
+
             Dealer dealer = new Dealer();
             Deck deck = new Deck();
             Player player = new Player();
