@@ -1,7 +1,6 @@
 using System;
 using SwinGameSDK;
 
-
 namespace Blackjack.src
 {
 	public class GameMain
@@ -9,6 +8,7 @@ namespace Blackjack.src
 		private static Bitmap BackgroundImage;
 		public static SoundEffect CardShuffle;
 		public static SoundEffect CardSlide;
+		private static bool _playing = false;
 
 		private static void LoadImages() // load the images 
 		{
@@ -49,12 +49,14 @@ namespace Blackjack.src
                     Audio.PlaySoundEffect(CardSlide);
                     game.Player.AddCard((game.Deck.Draw()));
                     game.CheckScores();
+					_playing = true;
                 }
                 if (SwinGame.KeyTyped(KeyCode.vk_s))
                 {
                     game.Dealer.Deal(game.Deck);
                     game.Decision = true;
                     game.CheckScores();
+					_playing = true;
                 }
             }
 
@@ -65,20 +67,20 @@ namespace Blackjack.src
 
 			if (SwinGame.KeyTyped (KeyCode.vk_c))
 			{
-				game.Player.BetDown ();
+				if (_playing == false) {
+					game.Player.BetDown ();
+				}
 			}
 
 
 			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
 			{ 
-				if (game.Player.Money <= 0)
-				{
-					Console.WriteLine("You dont have any money Left");
-				}
-
-				else
-				{
-					game.Player.BetUp();
+				if (_playing == false) {
+					if (game.Player.Money <= 0) {
+						Console.WriteLine ("You dont have any money Left");
+					} else {
+						game.Player.BetUp ();
+					}
 				}
 			}
 		}

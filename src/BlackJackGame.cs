@@ -8,7 +8,6 @@ namespace Blackjack.src
 		WIN,
 		LOSE,
 		DRAW
-
 	}
 	public class BlackJackGame
 	{
@@ -69,8 +68,8 @@ namespace Blackjack.src
 			SwinGame.DrawText(_dealer.FirstTwoCards(), Color.Black, 400, 200);
 			SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 270);
 			SwinGame.DrawText ("Total: " + _player.CardTotal, Color.Black, 400, 585);
-			SwinGame.DrawText (" Your Money " + _player.Money, Color.Gold, 600, 20);
-			SwinGame.DrawText (" Bet " + _player.Bet, Color.Gold, 600, 40);
+			SwinGame.DrawText (" Your Money $" + _player.Money, Color.Gold, 600, 20);
+			SwinGame.DrawText (" Bet $" + _player.Bet, Color.Gold, 600, 40);
 
 			if (Player.CardsinHand >= 3) 
 			{
@@ -145,13 +144,10 @@ namespace Blackjack.src
 
 		public void RestartGame()
 		{
-			if (_decision == true)
-			{
-				if (_gamestate == GameState.WIN) 
-				{
+			if (_decision == true) {
+				if (_gamestate == GameState.WIN) {
 					Player.Money = Player.Money + Player.Bet * 2;
-				} else
-				{
+				} else {
 					Player.Money = Player.Money - Player.Bet;
 				}
 					
@@ -160,9 +156,10 @@ namespace Blackjack.src
 				_decision = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
-	            //_deck.Shuffle ();
+				//_deck.Shuffle ();
 				DealFirstTwoCards ();
-			}
+			} 
+				
 		}
 
 		public void DealFirstTwoCards()
