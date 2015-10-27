@@ -11,7 +11,7 @@ namespace Blackjack.src
 			
 		public void Deal (Deck deck)
 		{
-			while (CardTotal < 16)
+			while (CardTotal < 17)
 			{
 				AddCard (deck.Draw());
 			}
