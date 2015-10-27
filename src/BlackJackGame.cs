@@ -71,23 +71,23 @@ namespace Blackjack.src
 
 			if (Player.CardsinHand >= 3) 
 			{
-				string result;
-				result = Player.Cards [2].ConvertToString();
-				SwinGame.DrawText ("Your Third Card is: " + result, Color.Black, 400, 525);
+				Card myCard = Player.Cards [2];
+				SwinGame.DrawText ("Your Third Card is: " + myCard.ConvertToString(), Color.Black, 400, 525);
+				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 525f);
 			}
 
 			if (Player.CardsinHand >= 4) 
 			{
-				string result;
-				result = Player.Cards [3].ConvertToString();
-				SwinGame.DrawText ("Your Fourth Card is: " + result, Color.Black, 400, 545);
+				Card myCard = Player.Cards [3];
+				SwinGame.DrawText ("Your Fourth Card is: " + myCard.ConvertToString(), Color.Black, 400, 545);
+				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 545f);
 			}
 
 			if (Player.CardsinHand >= 5) 
 			{
-				string result;
-				result = Player.Cards [4].ConvertToString();
-				SwinGame.DrawText ("Your Fifth Card is: " + result, Color.Black, 400, 565);
+				Card myCard = Player.Cards [4];
+				SwinGame.DrawText ("Your Fifth Card is: " + myCard.ConvertToString(), Color.Black, 400, 565);
+				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 565f);
 			}
 
 			if (_decision)
