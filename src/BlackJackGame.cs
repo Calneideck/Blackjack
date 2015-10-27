@@ -7,7 +7,9 @@ namespace Blackjack.src
 	{
 		WIN,
 		LOSE,
-		DRAW
+		DRAW,
+		BETTING,
+		PLAYING 
 	}
 	public class BlackJackGame
 	{
@@ -16,7 +18,6 @@ namespace Blackjack.src
 		private Dealer _dealer;
 		private GameState _gamestate;
 		private bool _decision;
-		private bool _playing = false;
 		private  bool _doubledowned = false;
 
 		public BlackJackGame (Deck deck, Player player, Dealer dealer)
@@ -25,18 +26,13 @@ namespace Blackjack.src
 			_player = player;
 			_dealer = dealer;
 			_decision = false;
+			_gamestate = GameState.BETTING;
 		}
 
 		public bool Double
 		{
 			get {return _doubledowned;}
 			set {_doubledowned = value;}
-		}
-
-		public bool Playing 
-		{
-			get {return _playing;}
-			set {_playing = value;}
 		}
 
 		public void CheckScores()
@@ -77,6 +73,7 @@ namespace Blackjack.src
 
 		public void DrawGame()
 		{
+
 			SwinGame.DrawText("Cards Remaining: " + _deck.CardsLeft()  ,Color.Blue, 20, 20);
 			SwinGame.DrawText("Play again: R key", Color.Blue, 20, 60);
 			SwinGame.DrawText("Hit: Spacebar", Color.Blue, 20, 80);
@@ -84,66 +81,61 @@ namespace Blackjack.src
 			SwinGame.DrawText("DoubleDown: D key", Color.Blue, 20, 120);
 			SwinGame.DrawText("Bet Up: B key", Color.Blue, 20, 140);
 			SwinGame.DrawText("Bet Down: C key", Color.Blue, 20, 160);
-			SwinGame.DrawText (_player.FirstTwoCards(), Color.Black, 400, 500);
-			SwinGame.DrawText(_dealer.FirstTwoCards(), Color.Black, 400, 200);
-			SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 270);
-			SwinGame.DrawText ("Total: " + _player.CardTotal, Color.Black, 400, 585);
 			SwinGame.DrawText (" available Money $" + _player.Money, Color.Gold, 600, 20);
 			SwinGame.DrawText (" Bet $" + _player.Bet, Color.Gold, 600, 40);
 
-			if (Player.CardsinHand >= 3) 
-			{
-				Card myCard = Player.Cards [2];
-				SwinGame.DrawText ("Your Third Card is: " + myCard.ConvertToString(), Color.Black, 400, 525);
-				SwinGame.DrawBitmap(myCard.CardImage(), 500f, 355f);
-			}
+			if (_gamestate != GameState.BETTING ) {
 
-			if (Player.CardsinHand >= 4) 
-			{
-				Card myCard = Player.Cards [3];
-				SwinGame.DrawText ("Your Fourth Card is: " + myCard.ConvertToString(), Color.Black, 400, 545);
-				SwinGame.DrawBitmap(myCard.CardImage() ,550f, 355f);
-			}
+				SwinGame.DrawText (_player.FirstTwoCards (), Color.Black, 400, 500);
+				SwinGame.DrawText (_dealer.FirstTwoCards (), Color.Black, 400, 200);
+				SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 270);
+				SwinGame.DrawText ("Total: " + _player.CardTotal, Color.Black, 400, 585);
 
-			if (Player.CardsinHand >= 5) 
-			{
-				Card myCard = Player.Cards [4];
-				SwinGame.DrawText ("Your Fifth Card is: " + myCard.ConvertToString(), Color.Black, 400, 565);
-				SwinGame.DrawBitmap(myCard.CardImage() ,600f, 355f);
-			}
+				if (Player.CardsinHand >= 3) {
+					Card myCard = Player.Cards [2];
+					SwinGame.DrawText ("Your Third Card is: " + myCard.ConvertToString (), Color.Black, 400, 525);
+					SwinGame.DrawBitmap (myCard.CardImage (), 500f, 355f);
+				}
 
-			if (Dealer.CardsinHand >= 2) 
-			{
-				Card DealerCard = Dealer.Cards [1];
-				SwinGame.DrawText ("Dealer's Second Card is: " + DealerCard.ConvertToString(), Color.Black, 400, 225);
-				SwinGame.DrawBitmap(DealerCard.CardImage(),  450f, 75f);
-			}
+				if (Player.CardsinHand >= 4) {
+					Card myCard = Player.Cards [3];
+					SwinGame.DrawText ("Your Fourth Card is: " + myCard.ConvertToString (), Color.Black, 400, 545);
+					SwinGame.DrawBitmap (myCard.CardImage (), 550f, 355f);
+				}
 
-			if (Dealer.CardsinHand >= 3) 
-			{
-				Card DealerCard = Dealer.Cards [2];
-				SwinGame.DrawText ("Dealer's Third Card is: " + DealerCard.ConvertToString(), Color.Black, 400, 235);
-				SwinGame.DrawBitmap(DealerCard.CardImage(),  500f, 75f);
-			}
+				if (Player.CardsinHand >= 5) {
+					Card myCard = Player.Cards [4];
+					SwinGame.DrawText ("Your Fifth Card is: " + myCard.ConvertToString (), Color.Black, 400, 565);
+					SwinGame.DrawBitmap (myCard.CardImage (), 600f, 355f);
+				}
 
-			if (Dealer.CardsinHand >= 4) 
-			{
-				Card DealerCard = Dealer.Cards [3];
-				SwinGame.DrawText ("Dealer's Fourth Card is: " + DealerCard.ConvertToString(), Color.Black, 400, 245);
-				SwinGame.DrawBitmap(DealerCard.CardImage() , 550f, 75f);
-			}
+				if (Dealer.CardsinHand >= 2) {
+					Card DealerCard = Dealer.Cards [1];
+					SwinGame.DrawText ("Dealer's Second Card is: " + DealerCard.ConvertToString (), Color.Black, 400, 225);
+					SwinGame.DrawBitmap (DealerCard.CardImage (), 450f, 75f);
+				}
 
-			if (Dealer.CardsinHand >= 5) 
-			{
-				Card DealerCard = Dealer.Cards [4];
-				SwinGame.DrawText ("Dealer's Fifth Card is: " + DealerCard.ConvertToString(), Color.Black, 400, 255);
-				SwinGame.DrawBitmap(DealerCard.CardImage() ,600f, 75f);
-			}
-			if ((Player.CardsinHand >= 3) && (Player.CardTotal == 21))
-			{
-				_gamestate = GameState.WIN;
-			}
+				if (Dealer.CardsinHand >= 3) {
+					Card DealerCard = Dealer.Cards [2];
+					SwinGame.DrawText ("Dealer's Third Card is: " + DealerCard.ConvertToString (), Color.Black, 400, 235);
+					SwinGame.DrawBitmap (DealerCard.CardImage (), 500f, 75f);
+				}
 
+				if (Dealer.CardsinHand >= 4) {
+					Card DealerCard = Dealer.Cards [3];
+					SwinGame.DrawText ("Dealer's Fourth Card is: " + DealerCard.ConvertToString (), Color.Black, 400, 245);
+					SwinGame.DrawBitmap (DealerCard.CardImage (), 550f, 75f);
+				}
+
+				if (Dealer.CardsinHand >= 5) {
+					Card DealerCard = Dealer.Cards [4];
+					SwinGame.DrawText ("Dealer's Fifth Card is: " + DealerCard.ConvertToString (), Color.Black, 400, 255);
+					SwinGame.DrawBitmap (DealerCard.CardImage (), 600f, 75f);
+				}
+				if ((Player.CardsinHand == 2) && (Player.CardTotal == 21)) {
+					_gamestate = GameState.WIN;
+				}
+			}
 
 			if (_decision)
 			{	switch (_gamestate) 
@@ -178,6 +170,11 @@ namespace Blackjack.src
 			Player.Bet = Player.Bet * 2;
 		}
 
+		public void PlayingGame()
+		{
+			_gamestate = GameState.PLAYING;
+		}
+
 		public void RestartGame()
 		{
 			if (_decision == true) {
@@ -188,8 +185,8 @@ namespace Blackjack.src
 					Player.Money = Player.Money - Player.Bet;
 				}
 
+				_gamestate = GameState.BETTING;
 				Double = false;
-				Playing = false;
 				_decision = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
@@ -216,6 +213,7 @@ namespace Blackjack.src
 		public GameState Status
 		{
 			get { return _gamestate; }
+			set {_gamestate = value;}
 		}
 
 		public Player Player

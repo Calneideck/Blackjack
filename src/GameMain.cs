@@ -49,9 +49,14 @@ namespace Blackjack.src
 						Audio.PlaySoundEffect (CardSlide);
 						game.Player.AddCard ((game.Deck.Draw ()));
 						game.CheckScores ();
-						game.Playing = true;
+						game.PlayingGame ();
 						game.Double = true;
 					}
+				}
+
+				if (SwinGame.KeyTyped(KeyCode.vk_p))
+				{
+					game.PlayingGame ();
 				}
 
                 if (SwinGame.KeyTyped(KeyCode.vk_SPACE))
@@ -60,7 +65,6 @@ namespace Blackjack.src
 						Audio.PlaySoundEffect (CardSlide);
 						game.Player.AddCard ((game.Deck.Draw ()));
 						game.CheckScores ();
-						game.Playing = true;
 					}
                 }
 
@@ -69,7 +73,7 @@ namespace Blackjack.src
                     game.Dealer.Deal(game.Deck);
                     game.Decision = true;
                     game.CheckScores();
-					game.Playing = true;
+					game.PlayingGame ();
                 }
             }
 
@@ -80,14 +84,14 @@ namespace Blackjack.src
 
 			if (SwinGame.KeyTyped (KeyCode.vk_c))
 			{
-				if (game.Playing == false) {
+				if (GameState.BETTING == game.Status) {
 					game.Player.BetDown ();
 				}
 			}
 				
 			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
 			{ 
-				if (game.Playing == false) {
+				if (GameState.PLAYING != game.Status) {
 					if (game.Player.Money <= 0) {
 						Console.WriteLine ("You dont have any money Left");
 					} else {
