@@ -64,15 +64,17 @@ namespace Blackjack.src
 		public void DrawGame()
 		{
 			SwinGame.DrawText("Cards Remaining: " + _deck.CardsLeft()  ,Color.Blue, 20, 20);
-			SwinGame.DrawText("Play again: R key", Color.Blue, 20, 40);
-			SwinGame.DrawText("Hit: Spacebar", Color.Blue, 20, 60);
-			SwinGame.DrawText("Sit: S key", Color.Blue, 20, 80);
-			SwinGame.DrawText("DoubleDown: D key", Color.Blue, 20, 100);
+			SwinGame.DrawText("Play again: R key", Color.Blue, 20, 60);
+			SwinGame.DrawText("Hit: Spacebar", Color.Blue, 20, 80);
+			SwinGame.DrawText("Sit: S key", Color.Blue, 20, 100);
+			SwinGame.DrawText("DoubleDown: D key", Color.Blue, 20, 120);
+			SwinGame.DrawText("Bet Up: B key", Color.Blue, 20, 140);
+			SwinGame.DrawText("Bet Down: C key", Color.Blue, 20, 160);
 			SwinGame.DrawText (_player.FirstTwoCards(), Color.Black, 400, 500);
 			SwinGame.DrawText(_dealer.FirstTwoCards(), Color.Black, 400, 200);
 			SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 270);
 			SwinGame.DrawText ("Total: " + _player.CardTotal, Color.Black, 400, 585);
-			SwinGame.DrawText (" Your Money $" + _player.Money, Color.Gold, 600, 20);
+			SwinGame.DrawText (" available Money $" + _player.Money, Color.Gold, 600, 20);
 			SwinGame.DrawText (" Bet $" + _player.Bet, Color.Gold, 600, 40);
 
 			if (Player.CardsinHand >= 3) 
@@ -141,6 +143,12 @@ namespace Blackjack.src
 					break;
 				}
 
+				if (Player.Money <= 0) 
+				{
+					Player.Bet = 0;
+					SwinGame.DrawText (" No funds" , Color.Gold, 600, 60);
+					SwinGame.DrawText (" Bet amount now set to 0" , Color.Gold, 600, 80);
+				}
 				
 			}
 
@@ -158,8 +166,6 @@ namespace Blackjack.src
 				} else {
 					Player.Money = Player.Money - Player.Bet;
 				}
-					
-				_player.Bet = 10;
 
 				_decision = false;
 				_player.ClearHands ();
