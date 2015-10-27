@@ -26,6 +26,7 @@ namespace Blackjack.src
 			//Background
 
 			BackgroundImage = Images.LoadBitmap("Background.jpg");
+			Simpleguide = Images.LoadBitmap("SimpleGuide.png");
 
 		}
 
