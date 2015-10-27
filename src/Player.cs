@@ -5,7 +5,7 @@ namespace Blackjack.src
 	public class Player :Hand
 	{
 		private int _money;
-		private int _bet = 10;
+		private int _bet = 0;
 
 		public Player ()
 		{

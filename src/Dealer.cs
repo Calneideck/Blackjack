@@ -17,13 +17,10 @@ namespace Blackjack.src
 			}
 		}
 
-		public override string FirstTwoCards ()
+		public override void DrawFirstTwoCards ()
 		{
-
 			Card FirstCard = Cards [0];
 			SwinGame.DrawBitmap(FirstCard.CardImage(), 400f, 75f);
-			return "Dealer has: " + FirstCard.ConvertToString ();
-
 		}
 	}
 }

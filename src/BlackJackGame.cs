@@ -26,7 +26,12 @@ namespace Blackjack.src
 			_player = player;
 			_dealer = dealer;
 			_decision = false;
+<<<<<<< HEAD
 			_gamestate = GameState.BETTING;
+=======
+			_player.BetUp ();
+			CheckScores ();
+>>>>>>> 0190f0eef95ae1accfb9e87e10b588b9b4373749
 		}
 
 		public bool Double
@@ -37,6 +42,9 @@ namespace Blackjack.src
 
 		public void CheckScores()
 		{
+			if (Player.CardTotal == 21) {
+				_decision = true;
+			}
 			if (_decision)
 			{
 				if (Dealer.CardTotal > 21)
@@ -81,6 +89,7 @@ namespace Blackjack.src
 			SwinGame.DrawText("DoubleDown: D key", Color.Blue, 20, 120);
 			SwinGame.DrawText("Bet Up: B key", Color.Blue, 20, 140);
 			SwinGame.DrawText("Bet Down: C key", Color.Blue, 20, 160);
+<<<<<<< HEAD
 			SwinGame.DrawText (" available Money $" + _player.Money, Color.Gold, 600, 20);
 			SwinGame.DrawText (" Bet $" + _player.Bet, Color.Gold, 600, 40);
 
@@ -135,6 +144,56 @@ namespace Blackjack.src
 				if ((Player.CardsinHand == 2) && (Player.CardTotal == 21)) {
 					_gamestate = GameState.WIN;
 				}
+=======
+			SwinGame.DrawText("Dealer's Total: " + _dealer.CardTotal,  Color.White, "Arial", 30, 400, 200);
+			SwinGame.DrawText("Your Total: " + _player.CardTotal, Color.White, "Arial", 30, 400, 480);
+			SwinGame.DrawText(" available Money $" + _player.Money, Color.Gold, 600, 20);
+			SwinGame.DrawText(" Bet $" + _player.Bet, Color.Gold, 600, 40);
+
+            _player.DrawFirstTwoCards();
+			_dealer.DrawFirstTwoCards();
+
+			if (Player.CardsinHand >= 3) 
+			{
+				Card myCard = Player.Cards [2];
+				SwinGame.DrawBitmap(myCard.CardImage(), 500f, 355f);
+			}
+
+			if (Player.CardsinHand >= 4) 
+			{
+				Card myCard = Player.Cards [3];
+				SwinGame.DrawBitmap(myCard.CardImage() ,550f, 355f);
+			}
+
+			if (Player.CardsinHand >= 5) 
+			{
+				Card myCard = Player.Cards [4];
+				SwinGame.DrawBitmap(myCard.CardImage() ,600f, 355f);
+			}
+
+			if (Dealer.CardsinHand >= 2) 
+			{
+				Card DealerCard = Dealer.Cards [1];
+				SwinGame.DrawBitmap(DealerCard.CardImage(),  450f, 75f);
+			}
+
+			if (Dealer.CardsinHand >= 3) 
+			{
+				Card DealerCard = Dealer.Cards [2];
+				SwinGame.DrawBitmap(DealerCard.CardImage(),  500f, 75f);
+			}
+
+			if (Dealer.CardsinHand >= 4) 
+			{
+				Card DealerCard = Dealer.Cards [3];
+				SwinGame.DrawBitmap(DealerCard.CardImage() , 550f, 75f);
+			}
+
+			if (Dealer.CardsinHand >= 5) 
+			{
+				Card DealerCard = Dealer.Cards [4];
+				SwinGame.DrawBitmap(DealerCard.CardImage() ,600f, 75f);
+>>>>>>> 0190f0eef95ae1accfb9e87e10b588b9b4373749
 			}
 
 			if (_decision)
@@ -180,18 +239,24 @@ namespace Blackjack.src
 			if (_decision == true) {
 				if (_gamestate == GameState.WIN) {
 					Player.Money = Player.Money + Player.Bet * 2;
+					Player.Bet = 0;
+
+
 				} 
 				if (_gamestate == GameState.LOSE) {
-					Player.Money = Player.Money - Player.Bet;
-				}
+					Player.Bet = 0;
+				} 
+
+				Player.BetUp ();
 
 				_gamestate = GameState.BETTING;
 				Double = false;
 				_decision = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
-				//_deck.Shuffle ();
 				DealFirstTwoCards ();
+				CheckScores ();
+
 			} 
 		}
 
@@ -207,7 +272,7 @@ namespace Blackjack.src
 
 		public void UpdateGame()
 		{
-            //CheckScores ();
+			
 		}
 
 		public GameState Status
