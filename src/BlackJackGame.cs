@@ -26,6 +26,7 @@ namespace Blackjack.src
 			_dealer = dealer;
 			_decision = false;
 			_player.BetUp ();
+			CheckScores ();
 		}
 
 		public bool Double
@@ -42,6 +43,9 @@ namespace Blackjack.src
 
 		public void CheckScores()
 		{
+			if (Player.CardTotal == 21) {
+				_decision = true;
+			}
 			if (_decision)
 			{
 				if (Dealer.CardTotal > 21)
@@ -199,8 +203,9 @@ namespace Blackjack.src
 				_decision = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
-				//_deck.Shuffle ();
 				DealFirstTwoCards ();
+				CheckScores ();
+
 			} 
 		}
 
@@ -216,7 +221,7 @@ namespace Blackjack.src
 
 		public void UpdateGame()
 		{
-            //CheckScores ();
+			
 		}
 
 		public GameState Status
