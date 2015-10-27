@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SwinGameSDK;
 
 namespace Blackjack.src
 {
@@ -40,14 +41,14 @@ namespace Blackjack.src
 			get {return  Cards.Count; }
 		}
 			
-		public virtual string FirstTwoCards
+		public virtual string FirstTwoCards()
 		{
-			get
-			{	string result1 = Cards [0].ConvertToString ();
-				string result2 = Cards [1].ConvertToString ();
+			Card FirstCard = Cards [0];
+			Card SecondCard = Cards [1];
+			SwinGame.DrawBitmap(FirstCard.CardImage(), 400f, 355f);
+			SwinGame.DrawBitmap(SecondCard.CardImage(), 450f, 355f);
+			return "You have: " + FirstCard.ConvertToString () + " & " + SecondCard.ConvertToString (); 
 
-				return "You have: " + result1 + " & " + result2; 
-			}
 		}
 			
  	}

@@ -64,7 +64,7 @@ namespace Blackjack.src
 		public void DrawGame()
 		{
 			SwinGame.DrawText("Cards Remaining: " + _deck.CardsLeft()  ,Color.Red,0,20);
-			SwinGame.DrawText (_player.FirstTwoCards, Color.Black, 400, 500);
+			SwinGame.DrawText (_player.FirstTwoCards(), Color.Black, 400, 500);
 			SwinGame.DrawText ("Total: " + _player.CardTotal, Color.Black, 400, 585);
 			SwinGame.DrawText (" Your Money " + _player.Money, Color.Gold, 600, 20);
 			SwinGame.DrawText (" Bet " + _player.Bet, Color.Gold, 600, 40);
@@ -73,14 +73,14 @@ namespace Blackjack.src
 			{
 				Card myCard = Player.Cards [2];
 				SwinGame.DrawText ("Your Third Card is: " + myCard.ConvertToString(), Color.Black, 400, 525);
-				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 525f);
+				SwinGame.DrawBitmap(myCard.CardImage(), 500f, 355f);
 			}
 
 			if (Player.CardsinHand >= 4) 
 			{
 				Card myCard = Player.Cards [3];
 				SwinGame.DrawText ("Your Fourth Card is: " + myCard.ConvertToString(), Color.Black, 400, 545);
-				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 545f);
+				SwinGame.DrawBitmap(myCard.CardImage() ,550f, 355f);
 			}
 
 			if (Player.CardsinHand >= 5) 
@@ -109,7 +109,7 @@ namespace Blackjack.src
 
 				
 			}
-            SwinGame.DrawText(_dealer.FirstTwoCards, Color.Black, 400, 200);
+			SwinGame.DrawText(_dealer.FirstTwoCards(), Color.Black, 400, 200);
             SwinGame.DrawText("Total: " + _dealer.CardTotal, Color.Black, 400, 250);
 
 		}

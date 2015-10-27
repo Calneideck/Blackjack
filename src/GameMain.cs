@@ -14,10 +14,10 @@ namespace Blackjack.src
 		{
 			for (int i = 1; i <= 13; i++)
 			{
-				SwinGame.LoadBitmapNamed (i + " of spades", i + "s.png");
-				SwinGame.LoadBitmapNamed (i + " of hearts", i + "h.png");
-				SwinGame.LoadBitmapNamed (i + " of clubs", i + "c.png");
-				SwinGame.LoadBitmapNamed (i + " of diamonds", i + "d.png");
+				SwinGame.LoadBitmapNamed (i + " of spades", i + "s.jpg");
+				SwinGame.LoadBitmapNamed (i + " of hearts", i + "h.jpg");
+				SwinGame.LoadBitmapNamed (i + " of clubs", i + "c.jpg");
+				SwinGame.LoadBitmapNamed (i + " of diamonds", i + "d.jpg");
 			}
 			//Background
 

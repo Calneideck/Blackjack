@@ -1,4 +1,5 @@
 ﻿using System;
+using SwinGameSDK;
 
 namespace Blackjack.src
 {
@@ -16,12 +17,13 @@ namespace Blackjack.src
 			}
 		}
 
-		public override string FirstTwoCards
+		public override string FirstTwoCards ()
 		{
-			get {
-				string result1 = Cards [0].ConvertToString ();
-				return "Dealer has: " + result1; 
-			}
+
+			Card FirstCard = Cards [0];
+			SwinGame.DrawBitmap(FirstCard.CardImage(), 400f, 75f);
+			return "Dealer has: " + FirstCard.ConvertToString ();
+
 		}
 	}
 }
