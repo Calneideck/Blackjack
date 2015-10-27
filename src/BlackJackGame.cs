@@ -25,6 +25,7 @@ namespace Blackjack.src
 			_player = player;
 			_dealer = dealer;
 			_decision = false;
+			_player.BetUp ();
 		}
 
 		public bool Double
@@ -183,10 +184,15 @@ namespace Blackjack.src
 			if (_decision == true) {
 				if (_gamestate == GameState.WIN) {
 					Player.Money = Player.Money + Player.Bet * 2;
+					Player.Bet = 0;
+
+
 				} 
 				if (_gamestate == GameState.LOSE) {
-					Player.Money = Player.Money - Player.Bet;
-				}
+					Player.Bet = 0;
+				} 
+
+				Player.BetUp ();
 
 				Double = false;
 				Playing = false;

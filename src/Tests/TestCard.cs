@@ -56,14 +56,14 @@ namespace Blackjack.src.tests
         }
 
         [Test()]
-        public void TestDealer16()
+        public void TestDealer15()
         {
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
-            dealer.AddCard(new Card(Rank.SIX, Suit.CLUB));
-			dealer.Deal(deck);
-            Assert.IsTrue(dealer.Cards.Count == 3);
+            dealer.AddCard(new Card(Rank.FIVE, Suit.CLUB));
+			dealer.Deal (deck);
+			Assert.IsTrue (dealer.CardsinHand == 3);
         }
 
         [Test()]
@@ -74,7 +74,7 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.KING, Suit.HEART));
             dealer.AddCard(new Card(Rank.SEVEN, Suit.CLUB));
 			dealer.Deal(deck);
-            Assert.IsTrue(dealer.Cards.Count == 2);
+			Assert.IsTrue (dealer.CardsinHand == 2);
         }
 
         [Test()]
