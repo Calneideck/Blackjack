@@ -122,5 +122,27 @@ namespace Blackjack.src.Tests
 
             Assert.IsTrue(game.Player.Money == 115);
         }
+
+        [Test()]
+        public void TestDoubleDown()
+        {
+            Player player = new Player();
+            Deck deck = new Deck();
+            Dealer dealer = new Dealer();
+
+            BlackJackGame game = new BlackJackGame(deck, player, dealer);
+
+            player.AddCard(new Card(Rank.SIX, Suit.DIAMOND));
+            player.AddCard(new Card(Rank.FIVE, Suit.SPADE));
+            game.DoubleDown();
+
+            Console.WriteLine(player.Bet);
+            Console.WriteLine(player.Cards.Count);
+            Console.WriteLine(game.Decision);
+
+            Assert.IsTrue(player.Bet == 20);
+            Assert.IsTrue(player.Cards.Count == 3);
+            Assert.IsTrue(game.Decision);
+        }
     }
 }
