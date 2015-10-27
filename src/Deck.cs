@@ -20,10 +20,6 @@ namespace Blackjack.src
             Shuffle();
 		}
 
-		public void apple ()
-		{
-		}
-
 		public void Shuffle()
 		{
 

@@ -8,8 +8,6 @@ namespace Blackjack.src
 		private static Bitmap BackgroundImage;
 		public static SoundEffect CardShuffle;
 		public static SoundEffect CardSlide;
-		private static bool _playing = false;
-		private static bool _doubledowned = false;
 
 		private static void LoadImages() // load the images 
 		{
@@ -42,26 +40,27 @@ namespace Blackjack.src
 		{
 			//Fetch the next batch of UI interaction
 			SwinGame.ProcessEvents();
-
 			if (!game.Decision)
             {
 				if (SwinGame.KeyTyped(KeyCode.vk_d))
 				{
-					game.DoubleDown ();
-					Audio.PlaySoundEffect (CardSlide);
-					game.Player.AddCard ((game.Deck.Draw ()));
-					game.CheckScores ();
-					_playing = true;
-					_doubledowned = true;
+					if (game.Double == false) {
+						game.DoubleDown ();
+						Audio.PlaySoundEffect (CardSlide);
+						game.Player.AddCard ((game.Deck.Draw ()));
+						game.CheckScores ();
+						game.Playing = true;
+						game.Double = true;
+					}
 				}
 
                 if (SwinGame.KeyTyped(KeyCode.vk_SPACE))
                 {
-					if (_doubledowned == false) {
+					if (game.Double == false) {
 						Audio.PlaySoundEffect (CardSlide);
 						game.Player.AddCard ((game.Deck.Draw ()));
 						game.CheckScores ();
-						_playing = true;
+						game.Playing = true;
 					}
                 }
 
@@ -70,26 +69,25 @@ namespace Blackjack.src
                     game.Dealer.Deal(game.Deck);
                     game.Decision = true;
                     game.CheckScores();
-					_playing = true;
+					game.Playing = true;
                 }
             }
 
 			if (SwinGame.KeyTyped (KeyCode.vk_r)) 
 			{
 				game.RestartGame ();
-				_playing = false;
 			}
 
 			if (SwinGame.KeyTyped (KeyCode.vk_c))
 			{
-				if (_playing == false) {
+				if (game.Playing == false) {
 					game.Player.BetDown ();
 				}
 			}
 				
 			if (SwinGame.KeyTyped (KeyCode.vk_b)) 
 			{ 
-				if (_playing == false) {
+				if (game.Playing == false) {
 					if (game.Player.Money <= 0) {
 						Console.WriteLine ("You dont have any money Left");
 					} else {

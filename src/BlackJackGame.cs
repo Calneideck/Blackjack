@@ -16,6 +16,8 @@ namespace Blackjack.src
 		private Dealer _dealer;
 		private GameState _gamestate;
 		private bool _decision;
+		private bool _playing = false;
+		private  bool _doubledowned = false;
 
 		public BlackJackGame (Deck deck, Player player, Dealer dealer)
 		{
@@ -23,6 +25,18 @@ namespace Blackjack.src
 			_player = player;
 			_dealer = dealer;
 			_decision = false;
+		}
+
+		public bool Double
+		{
+			get {return _doubledowned;}
+			set {_doubledowned = value;}
+		}
+
+		public bool Playing 
+		{
+			get {return _playing;}
+			set {_playing = value;}
 		}
 
 		public void CheckScores()
@@ -125,6 +139,11 @@ namespace Blackjack.src
 				SwinGame.DrawText ("Dealer's Fifth Card is: " + DealerCard.ConvertToString(), Color.Black, 400, 255);
 				SwinGame.DrawBitmap(DealerCard.CardImage() ,600f, 75f);
 			}
+			if ((Player.CardsinHand >= 3) && (Player.CardTotal == 21))
+			{
+				_gamestate = GameState.WIN;
+			}
+
 
 			if (_decision)
 			{	switch (_gamestate) 
@@ -169,13 +188,14 @@ namespace Blackjack.src
 					Player.Money = Player.Money - Player.Bet;
 				}
 
+				Double = false;
+				Playing = false;
 				_decision = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
 				//_deck.Shuffle ();
 				DealFirstTwoCards ();
 			} 
-				
 		}
 
 		public void DealFirstTwoCards()
