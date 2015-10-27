@@ -106,36 +106,26 @@ namespace Blackjack
 			return result;
 		}
 
-//		public Bitmap CardImage()
-//		{
-//			Bitmap result;
-//			for (int i = 1; i <= 13; i++)
-//			{
-//				switch (_suit) 
-//				{
-//				case i + Suit.SPADE: 
-//					result += SwinGame.BitmapName (i + " of spades");
-//					break;
-//				case i + Suit.HEART: 
-//					result += SwinGame.BitmapName (i + " of hearts");
-//					break;
-//				case i + Suit.SPADE: 
-//					result += SwinGame.BitmapName (i + " of diamonds");
-//					break;
-//				case i + Suit.SPADE: 
-//					result += SwinGame.BitmapName (i + " of clubs");
-//					break;
-//				default:
-//					result += "TBD";
-//					break;
-//				
-//				}
-//
-//				return result; 
-//
-//			}
-//
-//		}
+		public Bitmap CardImage()
+		{
+			for (int i = 1; i <= 13; i++)
+			{
+				switch (_suit) 
+				{
+					case Suit.SPADE:  
+						return SwinGame.BitmapNamed ((i + " of spades"));
+					case Suit.HEART: 
+						return SwinGame.BitmapNamed ((i + " of hearts"));
+					case Suit.DIAMOND: 
+						return SwinGame.BitmapNamed ((i + " of diamonds"));
+					case Suit.CLUB: 
+						return SwinGame.BitmapNamed ((i + " of clubs"));
+				
+				}
+			}
+			return null;
+
+		}
 
 	}
 }
