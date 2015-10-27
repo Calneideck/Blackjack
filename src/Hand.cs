@@ -41,14 +41,12 @@ namespace Blackjack.src
 			get {return  Cards.Count; }
 		}
 			
-		public virtual string FirstTwoCards()
+		public virtual void DrawFirstTwoCards()
 		{
 			Card FirstCard = Cards [0];
 			Card SecondCard = Cards [1];
 			SwinGame.DrawBitmap(FirstCard.CardImage(), 400f, 355f);
 			SwinGame.DrawBitmap(SecondCard.CardImage(), 450f, 355f);
-			return "You have: " + FirstCard.ConvertToString () + " & " + SecondCard.ConvertToString (); 
-
 		}
 			
  	}
