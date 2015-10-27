@@ -159,15 +159,20 @@ namespace Blackjack.src
 		{
 			Player.Bet = Player.Bet * 2;
 		}
+
 		public void RestartGame()
 		{
 			if (_decision == true) {
 				if (_gamestate == GameState.WIN) {
 					Player.Money = Player.Money + Player.Bet * 2;
-				} else {
 					Player.Bet = 0;
-				}
-				Player.Bet = 0;
+
+
+				} 
+				if (_gamestate == GameState.LOSE) {
+					Player.Bet = 0;
+				} 
+
 				Player.BetUp ();
 
 				_decision = false;
