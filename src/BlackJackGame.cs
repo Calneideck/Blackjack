@@ -23,6 +23,7 @@ namespace Blackjack.src
 			_player = player;
 			_dealer = dealer;
 			_decision = false;
+			_player.BetUp ();
 		}
 
 		public void CheckScores()
@@ -164,8 +165,10 @@ namespace Blackjack.src
 				if (_gamestate == GameState.WIN) {
 					Player.Money = Player.Money + Player.Bet * 2;
 				} else {
-					Player.Money = Player.Money - Player.Bet;
+					Player.Bet = 0;
 				}
+				Player.Bet = 0;
+				Player.BetUp ();
 
 				_decision = false;
 				_player.ClearHands ();

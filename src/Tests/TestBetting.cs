@@ -39,6 +39,7 @@ namespace Blackjack.src.Tests
 
 			game.Decision = true;
 			game.CheckScores();
+			game.RestartGame ();
 
 			Assert.IsTrue(game.Player.Money == 90);
 		}
@@ -103,8 +104,9 @@ namespace Blackjack.src.Tests
 
             game.Decision = true;
             game.CheckScores();
+			game.RestartGame ();
+            Assert.IsTrue(game.Player.Money == 120);
 
-            Assert.IsTrue(game.Player.Money == 110);
         }
 
         [Test()]
@@ -116,11 +118,16 @@ namespace Blackjack.src.Tests
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
 
+			dealer.AddCard(new Card(Rank.TEN, Suit.HEART));
+			dealer.AddCard(new Card(Rank.EIGHT, Suit.SPADE));
+
             player.AddCard(new Card(Rank.ACE, Suit.DIAMOND));
             player.AddCard(new Card(Rank.JACK, Suit.SPADE));
-            game.CheckScores();
 
-            Assert.IsTrue(game.Player.Money == 115);
+			game.Decision = true;
+            game.CheckScores();
+			game.RestartGame ();
+            Assert.IsTrue(game.Player.Money == 120);
         }
     }
 }
