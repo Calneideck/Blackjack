@@ -87,7 +87,7 @@ namespace Blackjack.src
 			{
 				Card myCard = Player.Cards [4];
 				SwinGame.DrawText ("Your Fifth Card is: " + myCard.ConvertToString(), Color.Black, 400, 565);
-				SwinGame.DrawBitmap(myCard.CardImage() ,400f, 565f);
+				SwinGame.DrawBitmap(myCard.CardImage() ,600f, 355f);
 			}
 
 			if (_decision)
