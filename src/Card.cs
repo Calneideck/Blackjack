@@ -108,21 +108,17 @@ namespace Blackjack
 
 		public Bitmap CardImage()
 		{
-			for (int i = 1; i <= 13; i++)
-			{
 				switch (_suit) 
 				{
 					case Suit.SPADE:  
-						return SwinGame.BitmapNamed ((i + " of spades"));
+				return SwinGame.BitmapNamed (((int)this.Rank + " of spades"));
 					case Suit.HEART: 
-						return SwinGame.BitmapNamed ((i + " of hearts"));
+				return SwinGame.BitmapNamed (((int)this.Rank + " of hearts"));
 					case Suit.DIAMOND: 
-						return SwinGame.BitmapNamed ((i + " of diamonds"));
+				return SwinGame.BitmapNamed (((int)this.Rank + " of diamonds"));
 					case Suit.CLUB: 
-						return SwinGame.BitmapNamed ((i + " of clubs"));
-				
+				return SwinGame.BitmapNamed (((int)this.Rank + " of clubs"));			
 				}
-			}
 			return null;
 
 		}
