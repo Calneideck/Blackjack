@@ -11,8 +11,6 @@ namespace Blackjack.src
 		public static SoundEffect CardSlide;
 		public static  Music music;
 		private static bool _showhelp = false;
-		private static bool _playing = false;
-		private static bool _doubledowned = false;
 
 		private static void LoadImages() // load the images 
 		{
@@ -69,7 +67,7 @@ namespace Blackjack.src
 
                 if (SwinGame.KeyTyped(KeyCode.vk_SPACE))
                 {
-					if (game.Double == false) {
+					if (game.Double == false && game.Status == GameState.PLAYING) {
 						Audio.PlaySoundEffect (CardSlide);
 						game.Player.AddCard ((game.Deck.Draw ()));
 						game.CheckScores ();
@@ -78,10 +76,13 @@ namespace Blackjack.src
 
                 if (SwinGame.KeyTyped(KeyCode.vk_s))
                 {
-                    game.Dealer.Deal(game.Deck);
-                    game.Decision = true;
-                    game.CheckScores();
-					game.PlayingGame ();
+					if (game.Status == GameState.PLAYING) 
+					{
+						game.Dealer.Deal (game.Deck);
+						game.Decision = true;
+						game.CheckScores ();
+						game.PlayingGame ();
+					}
                 }
             }
 
@@ -110,7 +111,6 @@ namespace Blackjack.src
 			if (SwinGame.KeyTyped (KeyCode.vk_h)) 
 			{
 				_showhelp = !_showhelp;
-
 
 			}
 
