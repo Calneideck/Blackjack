@@ -30,7 +30,6 @@ namespace Blackjack.src
 			_decision = false;
 			_gamestate = GameState.BETTING;
 			_player.BetUp ();
-			CheckScores ();
 		}
 
 		public bool Double
@@ -222,8 +221,6 @@ namespace Blackjack.src
 				_player.ClearHands ();
 				_dealer.ClearHands ();
 				DealFirstTwoCards ();
-				CheckScores ();
-
 			} 
 		}
 
