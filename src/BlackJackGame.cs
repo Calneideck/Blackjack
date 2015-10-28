@@ -83,15 +83,14 @@ namespace Blackjack.src
 
 		public void DrawGame()
 		{
-            SwinGame.DrawText(_gamestate.ToString(), Color.White, 300, 20);
-            SwinGame.DrawText(_decision.ToString(), Color.White, 300, 50);
-            SwinGame.DrawText ("Cards Remaining: " + _deck.CardsLeft (), Color.Blue, 20, 20);
-			SwinGame.DrawText ("Play again: R key", Color.Blue, 20, 60);
-			SwinGame.DrawText ("Hit: Spacebar", Color.Blue, 20, 80);
-			SwinGame.DrawText ("Sit: S key", Color.Blue, 20, 100);
-			SwinGame.DrawText ("DoubleDown: D key", Color.Blue, 20, 120);
-			SwinGame.DrawText ("Bet Up: B key", Color.Blue, 20, 140);
-			SwinGame.DrawText ("Bet Down: C key", Color.Blue, 20, 160);
+            SwinGame.DrawText ("Cards Remaining: " + _deck.CardsLeft (), Color.Yellow, 20, 20);
+			SwinGame.DrawText ("Play again: R key", Color.Yellow, 20, 60);
+			SwinGame.DrawText ("Hit: Spacebar", Color.Yellow, 20, 80);
+			SwinGame.DrawText ("Sit: S key", Color.Yellow, 20, 100);
+			SwinGame.DrawText ("DoubleDown: D key", Color.Yellow, 20, 120);
+			SwinGame.DrawText ("Bet Up: B key", Color.Yellow, 20, 140);
+			SwinGame.DrawText ("Bet Down: C key", Color.Yellow, 20, 160);
+            SwinGame.DrawText("Show Help: H key", Color.Yellow, 20, 180);
 			SwinGame.DrawText (" available Money $" + _player.Money, Color.Gold, 600, 20);
 			SwinGame.DrawText (" Bet $" + _player.Bet, Color.Gold, 600, 40);
 

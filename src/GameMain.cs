@@ -115,7 +115,8 @@ namespace Blackjack.src
 		{
             Graphics.ClearScreen();
             Images.DrawBitmap (BackgroundImage, 0, 0);
-			if (_showhelp) Images.DrawBitmap (Simpleguide, 0, 0);
+			if (_showhelp)
+                Images.DrawBitmap (Simpleguide, 0, 240);
 			game.DrawGame ();
 			SwinGame.RefreshScreen(60);
 		}
