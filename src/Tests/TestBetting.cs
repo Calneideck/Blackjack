@@ -124,10 +124,9 @@ namespace Blackjack.src.Tests
             player.AddCard(new Card(Rank.ACE, Suit.DIAMOND));
             player.AddCard(new Card(Rank.JACK, Suit.SPADE));
 
-			game.Decision = true;
             game.CheckScores();
-			game.RestartGame ();
-            Assert.IsTrue(game.Player.Money == 100);
+			game.RestartGame();
+            Assert.AreEqual(105, game.Player.Money);
         }
 
         [Test()]

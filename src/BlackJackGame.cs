@@ -19,7 +19,8 @@ namespace Blackjack.src
 		private Dealer _dealer;
 		private GameState _gamestate;
 		private bool _decision;
-		private  bool _doubledowned = false;
+		private bool _doubledowned = false;
+        private bool _blackjackWin = false;
 
 		public BlackJackGame (Deck deck, Player player, Dealer dealer)
 		{
@@ -70,6 +71,7 @@ namespace Blackjack.src
                 if (Player.CardTotal == 21 && Player.Cards.Count == 2)
                 {
                     _gamestate = GameState.WIN;
+                    _blackjackWin = true;
                     _decision = true;
 			    }
                 else if (_player.CardsinHand == 5)
@@ -200,10 +202,11 @@ namespace Blackjack.src
 		{
 			if (_decision == true) {
 				if (_gamestate == GameState.WIN) {
-					Player.Money = Player.Money + Player.Bet * 2;
+					if (_blackjackWin)
+                        Player.Money = Player.Money + (int)(Player.Bet * 2.5f);
+                    else
+                        Player.Money = Player.Money + Player.Bet * 2;
 					Player.Bet = 0;
-
-
 				} 
 				if (_gamestate == GameState.LOSE) {
 					Player.Bet = 0;
@@ -215,6 +218,7 @@ namespace Blackjack.src
 				_gamestate = GameState.BETTING;
 				Double = false;
 				_decision = false;
+                _blackjackWin = false;
 				_player.ClearHands ();
 				_dealer.ClearHands ();
 				DealFirstTwoCards ();
