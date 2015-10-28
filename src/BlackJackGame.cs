@@ -40,10 +40,12 @@ namespace Blackjack.src
 
 		public void CheckScores()
 		{
-			if (Player.CardTotal == 21) {
-				_decision = true;
+			if (_player.CardTotal > 21) 
+			{
+				_gamestate = GameState.LOSE;
+                _decision = true;
 			}
-			if (_decision)
+            else if (_decision)
 			{
 				if (Dealer.CardTotal > 21)
                 {
@@ -51,7 +53,8 @@ namespace Blackjack.src
                 }
                 else if (_player.CardTotal > _dealer.CardTotal)
 				{
-					_gamestate = GameState.WIN;
+                    _gamestate = GameState.WIN;
+                    Console.WriteLine(_gamestate);
 				}
 				else if (_player.CardTotal < _dealer.CardTotal)
 				{
@@ -64,11 +67,11 @@ namespace Blackjack.src
 			}
             else
             {
-                if (_player.CardTotal > 21) 
-				{
-					_gamestate = GameState.LOSE;
+                if (Player.CardTotal == 21 && Player.Cards.Count == 2)
+                {
+                    _gamestate = GameState.WIN;
                     _decision = true;
-				} 
+			    }
                 else if (_player.CardsinHand == 5)
 				{
 					_gamestate = GameState.WIN;
@@ -79,8 +82,9 @@ namespace Blackjack.src
 
 		public void DrawGame()
 		{
-
-			SwinGame.DrawText ("Cards Remaining: " + _deck.CardsLeft (), Color.Blue, 20, 20);
+            SwinGame.DrawText(_gamestate.ToString(), Color.White, 300, 20);
+            SwinGame.DrawText(_decision.ToString(), Color.White, 300, 50);
+            SwinGame.DrawText ("Cards Remaining: " + _deck.CardsLeft (), Color.Blue, 20, 20);
 			SwinGame.DrawText ("Play again: R key", Color.Blue, 20, 60);
 			SwinGame.DrawText ("Hit: Spacebar", Color.Blue, 20, 80);
 			SwinGame.DrawText ("Sit: S key", Color.Blue, 20, 100);
@@ -170,13 +174,27 @@ namespace Blackjack.src
 
 		public void DoubleDown()
 		{
-			Player.Bet = Player.Bet * 2;
+			if (_gamestate == GameState.PLAYING && Player.Cards.Count < 4)
+            {
+                if (Player.Money >= Player.Bet)
+                {
+                    Player.Money -= Player.Bet;
+                    Player.Bet = Player.Bet * 2;
+
+                    Player.AddCard((Deck.Draw()));
+                    Double = true;
+                    CheckScores();
+                    Dealer.Deal(Deck);
+                    Decision = true;
+                    CheckScores();
+                }
+            }
 		}
 
-		public void PlayingGame()
-		{
-			_gamestate = GameState.PLAYING;
-		}
+        public void PlayingGame()
+        {
+            _gamestate = GameState.PLAYING;
+        }
 
 		public void RestartGame()
 		{
@@ -191,7 +209,8 @@ namespace Blackjack.src
 					Player.Bet = 0;
 				} 
 
-				Player.BetUp ();
+				if (Player.Money >= 10 && _gamestate != GameState.DRAW)
+                    Player.BetUp ();
 
 				_gamestate = GameState.BETTING;
 				Double = false;

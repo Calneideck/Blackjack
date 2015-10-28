@@ -127,7 +127,7 @@ namespace Blackjack.src.Tests
 			game.Decision = true;
             game.CheckScores();
 			game.RestartGame ();
-            Assert.IsTrue(game.Player.Money == 120);
+            Assert.IsTrue(game.Player.Money == 100);
         }
 
         [Test()]
@@ -141,6 +141,7 @@ namespace Blackjack.src.Tests
 
             player.AddCard(new Card(Rank.SIX, Suit.DIAMOND));
             player.AddCard(new Card(Rank.FIVE, Suit.SPADE));
+            game.Status = GameState.PLAYING;
             game.DoubleDown();
 
             Console.WriteLine(player.Bet);

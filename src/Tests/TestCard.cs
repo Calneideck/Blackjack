@@ -148,6 +148,7 @@ namespace Blackjack.src.tests
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
             game.CheckScores();
 
+            Console.WriteLine(game.Status);
             Assert.IsTrue(game.Status == GameState.LOSE);
         }
 
@@ -167,8 +168,6 @@ namespace Blackjack.src.tests
             dealer.AddCard(new Card(Rank.TEN, Suit.SPADE));
 
             BlackJackGame game = new BlackJackGame(deck, player, dealer);
-            game.CheckScores();
-
             Assert.IsTrue(game.Status == GameState.WIN);
         }
     }

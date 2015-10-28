@@ -52,11 +52,7 @@ namespace Blackjack.src
 				{
 					if (game.Double == false) {
 						game.DoubleDown ();
-						Audio.PlaySoundEffect (CardSlide);
-						game.Player.AddCard ((game.Deck.Draw ()));
-						game.CheckScores ();
-						game.PlayingGame ();
-						game.Double = true;
+						
 					}
 				}
 
@@ -81,7 +77,6 @@ namespace Blackjack.src
 						game.Dealer.Deal (game.Deck);
 						game.Decision = true;
 						game.CheckScores ();
-						game.PlayingGame ();
 					}
                 }
             }
