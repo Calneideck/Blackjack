@@ -194,6 +194,7 @@ namespace Blackjack.src
         public void PlayingGame()
         {
             _gamestate = GameState.PLAYING;
+            CheckScores();
         }
 
 		public void RestartGame()
@@ -231,11 +232,6 @@ namespace Blackjack.src
 			_player.AddCard (_deck.Draw ());
             // Dealer gets 1
 			_dealer.AddCard (_deck.Draw ());
-		}
-
-		public void UpdateGame()
-		{
-			
 		}
 
 		public GameState Status

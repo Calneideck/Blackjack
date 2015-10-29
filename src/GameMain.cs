@@ -121,11 +121,6 @@ namespace Blackjack.src
 			SwinGame.RefreshScreen(60);
 		}
 
-		private static void UpdateGame(BlackJackGame game)
-		{
-			game.UpdateGame ();
-		}
-
 		public static void Main()
 		{
 			SwinGame.OpenGraphicsWindow("BlackJack", 800, 600);
@@ -141,7 +136,6 @@ namespace Blackjack.src
 			while (false == SwinGame.WindowCloseRequested())
 			{
 				PlayerleUserInput (game);
-				UpdateGame(game);
 				DrawGame (game);
 				SwinGame.RefreshScreen(60);
 			}
